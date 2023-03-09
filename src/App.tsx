@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
-import Header from './Components/Header';
+import { Header } from "./Components/Header"
+import { HomePage } from './Components/HomePage';
 
 function App() {
   return (
-    <Header />
+    <main className="min-h-screen bg-[#0F1121]">
+      <Header />
+      <HomePage />
+    </main>
   );
 }
 

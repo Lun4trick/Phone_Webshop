@@ -1,11 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import React, { useState } from 'react';
 import NavBar from './NavBar/NavBar';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="flex bg-slate-900 justify-between tablet:justify-start h-fit border-b border-gray-600">
+    <header className="flex bg-[#0F1121] justify-between tablet:justify-start h-fit border-b border-gray-600 sticky top-0">
       <div className="p-4 laptop:px-6">
         <img className="h-5 w-16 laptop:h-7 laptop:w-20" src="./imgs/logo.svg" alt="Logo" />
       </div>
@@ -33,5 +34,3 @@ const Header: React.FC = () => {
     </header>
   );
 }
-
-export default Header;
