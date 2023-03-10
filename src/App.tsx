@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 import { Footer } from './Components/Footer';
 import { Header } from "./Components/Header"
+import { BurgerMenu } from './Components/Header/NavBar/BurgerMenu';
 import { HomePage } from './Components/HomePage';
 
-function App() {
+const App: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const onMenuAction = useCallback(() => {
+    setIsMenuOpen(!isMenuOpen);
+  }, [isMenuOpen])
+  
   return (
-    <main className="min-h-screen bg-[#0F1121]">
-      <Header />
+    <main className="min-h-screen flex flex-col m-0 bg-[#0F1121]">
+      <Header onMenuAction={onMenuAction} isMenuOpen={isMenuOpen}/>
+      <BurgerMenu isMenuOpen={isMenuOpen} />
       <HomePage />
-      <div className='h-[1000px]'>
-        fdsaf
+      <div className="relative h-full">
+        asfasdfas
       </div>
       <Footer/>
     </main>

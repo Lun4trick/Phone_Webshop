@@ -17,7 +17,7 @@ export const Footer: React.FC = () => (
       src="./imgs/logo.svg" 
       alt="" 
     />
-    <div className="flex tablet:flex-row flex-col  laptop:gap-24 tablet:gap-12 tablet:mb-0 gap-4 uppercase tablet:items-center mb-8">
+    <div className="flex tablet:flex-row flex-col laptop:gap-24 tablet:gap-12 tablet:mb-0 gap-4 uppercase tablet:items-center mb-8">
       <NavLink to="https://github.com/Lun4trick" className="text-white">
         GitHub
       </NavLink>
