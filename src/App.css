@@ -2,3 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import url('https://fonts.cdnfonts.com/css/mont');
+
+@layer base {
+  @font-face {
+    font-family: 'Mont';
+    src: url('./utils/fonts/Mont-Regular.otf') format('truetype');
+  }
+}

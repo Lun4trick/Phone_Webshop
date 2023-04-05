@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { AdScroll } from './AdScroll/Adscroll';
+import { AdScroll } from '../AdScroll/Adscroll';
+import BrandNewModels from '../BrandNewModels/BrandNewModels';
 
 export const HomePage: React.FC = () => (
   <section className='h-full flex-1 p-4 max-w-[1200px] mx-auto w-full'>
@@ -8,5 +9,6 @@ export const HomePage: React.FC = () => (
       Welcome to Nice Gadgets store!
     </h1>
     <AdScroll />
+    <BrandNewModels />
   </section>
 );

@@ -27,14 +27,14 @@ const NavBar: React.FC = () => (
         type='button' 
         className="tablet:flex p-4 laptop:p-5 items-center border-l border-gray-600 hover:bg-slate-600 active:bg-slate-500"
       >
-        <img src="./imgs/favourites_icon.svg" alt="" />
+        <img src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} alt="" />
       </button>
 
       <button 
         type='button' 
         className="tablet:flex p-4 laptop:p-5 border-l border-gray-600 items-center hover:bg-slate-600 active:bg-slate-500"
       >
-        <img src="./imgs/shopping_cart.svg" alt="" />
+        <img src={`${process.env.PUBLIC_URL}/imgs/shopping_cart.svg`} alt="" />
       </button>
     </div>
   </>

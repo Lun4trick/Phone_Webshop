@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import NavItems from '../NavItems';
+import NavItems from '../NavBar/NavItems';
 
 type Props = {
   isMenuOpen: boolean;
@@ -43,13 +43,13 @@ export const BurgerMenu: React.FC<Props> = ({ isMenuOpen }) => {
         <button type='button' className="w-1/2 p-4 h-full laptop:p-5 items-center border-gray-600 hover:bg-slate-600 active:bg-slate-500 active:border-b-4 active:border-b-white">
           <img 
             className='mx-auto'
-            src="./imgs/favourites_icon.svg" 
+            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} 
             alt="" 
           />
         </button>
         <button type='button' className="w-1/2 p-4 h-full justify-center laptop:p-5  border-l border-gray-600 items-center hover:bg-slate-600 active:bg-slate-500 active:border-b-4 active:border-b-white">
           <img 
-            src="./imgs/shopping_cart.svg" 
+            src={`${process.env.PUBLIC_URL}/imgs/shopping_cart.svg`}
             className='mx-auto'
             alt="" 
           />

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import NavBar from './NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 
 type Props = {
   isMenuOpen: Boolean,
@@ -10,7 +10,11 @@ type Props = {
 export const Header: React.FC<Props> = ({isMenuOpen, onMenuAction}) => (
   <header id="header" className="flex bg-[#0F1121] justify-between tablet:justify-start h-fit border-b border-gray-600 sticky top-0">
     <div className="p-4 laptop:px-6">
-      <img className="h-5 w-16 laptop:h-7 laptop:w-20" src="./imgs/logo.svg" alt="Logo" />
+      <img 
+        className="h-5 w-16 laptop:h-7 laptop:w-20" 
+        src={`${process.env.PUBLIC_URL}/imgs/logo.svg`} 
+        alt="Logo" 
+      />
     </div>
     <nav className="flex justify-between grow">
       <NavBar />
@@ -28,8 +32,8 @@ export const Header: React.FC<Props> = ({isMenuOpen, onMenuAction}) => (
         } 
         src={
           isMenuOpen
-            ? './imgs/mobile_close_menu.svg'
-            : './imgs/mobile_open_menu.svg'} 
+            ? `${process.env.PUBLIC_URL}/imgs/mobile_close_menu.svg`
+            : `${process.env.PUBLIC_URL}/imgs/mobile_open_menu.svg`} 
         alt="" 
       />
     </button>

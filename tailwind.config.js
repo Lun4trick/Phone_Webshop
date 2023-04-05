@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'mont': ['mont']
+      'sans': ['Mont'],
     },
     screens: {
       'mobile': '0px',
@@ -14,6 +14,9 @@ module.exports = {
       'desktop': '1280px',
     },
     extend: {
+      transitionProperty: {
+        'height': 'height'
+      },
       backgroundImage: {
         'iphone-14-back': "url('./imgs/adScrollImgs/iphone-14-back.png')",
         'iphone-14-pros': "url('./imgs/adScrollImgs/iphone-14-pros.png')",

@@ -14,7 +14,7 @@ export const Footer: React.FC = () => (
   >
     <img 
       className="max-h-[30px] max-w-[90px] mb-8 tablet:mb-0"
-      src="./imgs/logo.svg" 
+      src={`${process.env.PUBLIC_URL}/imgs/logo.svg`}
       alt="" 
     />
     <div className="flex tablet:flex-row flex-col laptop:gap-24 tablet:gap-12 tablet:mb-0 gap-4 uppercase tablet:items-center mb-8">
@@ -38,7 +38,7 @@ export const Footer: React.FC = () => (
         onClick={scrollToTop}
       >
         <img 
-          src="./imgs/back-to-top.svg" 
+          src={`${process.env.PUBLIC_URL}/imgs/back-to-top.svg`} 
           alt="" 
         />
       </button>

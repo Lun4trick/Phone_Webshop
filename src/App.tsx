@@ -2,11 +2,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import { Footer } from './Components/Footer';
 import { Header } from "./Components/Header"
-import { BurgerMenu } from './Components/Header/NavBar/BurgerMenu';
+import { BurgerMenu } from './Components/BurgerMenu';
 import { HomePage } from './Components/HomePage';
+import { loadPhones } from './features/PhonesSlice';
+import { useAppDispatch, useAppSelector } from './app/hooks';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const phones = useAppSelector(state => state.allPhones.phones);
 
   const onMenuAction = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +23,8 @@ const App: React.FC = () => {
       }
     });
 
+    dispatch(loadPhones());
+
     return () => {
       window.removeEventListener('resize', () => {
         if (window.innerWidth > 639) {
@@ -27,6 +33,10 @@ const App: React.FC = () => {
       });
     }
   }, [])
+
+  useEffect(() => {
+    console.log(phones);
+  }, [phones]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -41,9 +51,6 @@ const App: React.FC = () => {
       <Header onMenuAction={onMenuAction} isMenuOpen={isMenuOpen}/>
       <BurgerMenu isMenuOpen={isMenuOpen} />
       <HomePage />
-      <div className="relative h-[2000px]">
-        asfasdfas
-      </div>
       <Footer/>
     </main>
   );

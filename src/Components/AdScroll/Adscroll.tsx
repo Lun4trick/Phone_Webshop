@@ -87,7 +87,7 @@ export const AdScroll: React.FC = () => {
             arrowButtonHandler(Direction.LEFT)
           }}
         >
-          <img src="./imgs/arrow-left.svg" alt="" />
+          <img src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`} alt="" />
         </button>
 
         <div className="flex w-full tablet:aspect-[5/2] tablet:max-h-[400px] aspect-square bg-black">
@@ -118,7 +118,7 @@ export const AdScroll: React.FC = () => {
             arrowButtonHandler(Direction.RIGHT)
           }}
         >
-          <img src="./imgs/arrow-right.svg" alt="" />
+          <img src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`} alt="" />
         </button>
       </div>
       <div className="flex h-5 w-full gap-4 justify-center">
@@ -126,7 +126,7 @@ export const AdScroll: React.FC = () => {
           <div 
             key={item.text} 
             className={`
-              h-2 w-4 cursor-pointer border-b-4 flex ${(item.text === currentElement.text) ? ' border-white' : ' border-gray-600'}`}
+              h-2 w-4 pb-[3px] px-[3px] cursor-pointer border-b-4 flex ${(item.text === currentElement.text) ? ' border-white' : ' border-gray-600'}`}
             onClick={() => {
               clearTimeout(timedAdChange)
               setCurrentElement(item);
