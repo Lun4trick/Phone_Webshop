@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react';
 import cn from 'classnames';
-import { useAppSelector } from '../../app/hooks';
 import PhoneCard from '../PhoneCard/PhoneCard';
 import ScrollPosition from '../../utils/types/ScrollPosition';
+import { PhonePreview } from '../../utils/types/PhonePreviewType';
 
-const BrandNewModels: React.FC = () => {
+type Props = {
+  products: PhonePreview[],
+  title: string,
+}
+
+const ProductScroll: React.FC<Props> = ({ products, title }) => {
   const { start, middle, end} = ScrollPosition;
-  const newModels = useAppSelector(state => state.allPhones.phones)
-    .filter(phone => phone.year >= 2019);
   const newModelsContainer = useRef<HTMLDivElement | null>(null);
   const [currentScrollPos, setCurrentScrollPos] = useState(start);
 
@@ -58,7 +61,7 @@ const BrandNewModels: React.FC = () => {
         <p 
           className='flex font-bold text-white text-[22px] leading-8'
         >
-          Brand new models
+          {title}
         </p>
         <div className='flex gap-4'>
           <button 
@@ -89,7 +92,7 @@ const BrandNewModels: React.FC = () => {
           </button>
         </div>
       </div>
-      {newModels.length === 0
+      {products.length === 0
         ? (
           <div className='mx-auto bg-gradient-to-b from-white to-slate-800 animate-spin rounded-full h-5 w-5'/>
         )
@@ -99,7 +102,7 @@ const BrandNewModels: React.FC = () => {
             ref={newModelsContainer}
             onScroll={handleScroll}
           >
-            {newModels.map(phone => (
+            {products.map(phone => (
               <div className='snap-start' key={phone.id}>
                 <PhoneCard phonePreview={phone}/>
               </div>
@@ -111,4 +114,4 @@ const BrandNewModels: React.FC = () => {
   )
 } 
 
-export default BrandNewModels;
+export default ProductScroll;

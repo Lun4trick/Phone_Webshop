@@ -3,7 +3,7 @@ import cn from 'classnames';
 import ProductCategories from '../../utils/map/ProductCategories';
 
 const ShopByCategory: React.FC = () => (
-  <section>
+  <section className='mb-20'>
     <p className='font-bold text-white text-[32px] mb-6'>
       Shop by category
     </p>
