@@ -78,7 +78,7 @@ export const AdScroll: React.FC = () => {
   }
 
   return (
-    <section id='adScroll' className="flex flex-col w-full">
+    <section id='adScroll' className="flex flex-col w-full mb-[66px]">
       <div className="flex gap-2 h-fit">
         <button 
           type='button' 

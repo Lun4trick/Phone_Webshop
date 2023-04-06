@@ -18,14 +18,14 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
   const specs = [['Screen', screen], ['Capacity', capacity], ['RAM', ram]];
 
   return (
-    <div className='w-[215px] h-[440px] p-8 bg-[#161827] min-w-[215px]'>
+    <div className='flex flex-col h-[440px] p-8 bg-[#161827] min-w-[215px]'>
       <div className='mb-6'>
         <img
           className='rounded-xl max-h-[130px] mx-auto'
           src={phoneImageBaseUrl + image} 
           alt={phonePreview.id} />
       </div>
-      <p className='text-white leading-5 text-[14px] mb-2'>
+      <p className='text-white leading-5 text-[14px] mb-2 line-clamp-2 hover:line-clamp-none'>
         {name}
       </p>
       <p className='text-white mb-2 font-bold text-[22px]'>
@@ -35,7 +35,7 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
       <div>
         {specs.map(
           spec => (
-            <div className='flex justify-between mb-2 text-[12px]'>
+            <div id={name} className='flex justify-between mb-2 text-[12px]'>
               <p className='text-[#75767F]'>
                 {spec[0]}
               </p>
