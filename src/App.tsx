@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Footer } from './Components/Footer';
 import { Header } from "./Components/Header"
 import { BurgerMenu } from './Components/BurgerMenu';
 import { HomePage } from './Components/HomePage';
 import { loadPhones } from './features/PhonesSlice';
-import { useAppDispatch, useAppSelector } from './app/hooks';
+import { useAppDispatch } from './app/hooks';
+import MobilePhones from './Components/MobilePhones/MobilePhones';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const phones = useAppSelector(state => state.allPhones.phones);
 
   const onMenuAction = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,10 +36,6 @@ const App: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log(phones);
-  }, [phones]);
-
-  useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add('overflow-hidden');
     } else {
@@ -47,12 +44,45 @@ const App: React.FC = () => {
   }, [isMenuOpen])
   
   return (
-    <main className="min-h-screen flex flex-col m-0 bg-[#0F1121]">
+    <div className="min-h-screen flex flex-col m-0 bg-[#0F1121]">
       <Header onMenuAction={onMenuAction} isMenuOpen={isMenuOpen}/>
       <BurgerMenu isMenuOpen={isMenuOpen} />
-      <HomePage />
+      <main>
+        <Routes>
+          <Route
+            path="/home"
+            element={(
+              <Navigate
+                to="/"
+                replace
+              />
+            )}
+            
+          />
+          <Route
+            path="/"
+            element={
+              <HomePage />
+            }
+          />
+
+          <Route
+            path="/phones"
+            element={
+              <MobilePhones />
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <h1 className="h-full text-6xl text-white">Page not found</h1>
+            }
+          />
+        </Routes>
+      </main>
       <Footer/>
-    </main>
+    </div>
   );
 }
 

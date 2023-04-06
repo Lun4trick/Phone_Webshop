@@ -16,7 +16,7 @@ export const Header: React.FC<Props> = ({isMenuOpen, onMenuAction}) => (
         alt="Logo" 
       />
     </div>
-    <nav className="flex justify-between grow">
+    <nav className="flex justify-between grow" role='navigation'>
       <NavBar />
     </nav>
     <button 

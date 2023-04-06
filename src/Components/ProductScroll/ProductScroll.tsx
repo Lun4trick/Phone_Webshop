@@ -68,7 +68,7 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
             type='button' 
             className={cn(
               "bg-gray-600 h-[32px] aspect-square flex items-center justify-center",
-              {"bg-transparent border-[1px] border-gray-600": currentScrollPos === start}
+              {"bg-transparent border-[1px] border-gray-700": currentScrollPos === start}
             )}
             onClick={scrollLeft}
           >
@@ -81,7 +81,7 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
             type='button'
             className={cn(
               "bg-gray-600 h-[32px] aspect-square flex items-center justify-center",
-              {"bg-transparent border-[1px] border-gray-600": currentScrollPos === end}
+              {"bg-transparent border-[1px] border-gray-700": currentScrollPos === end}
             )}
             onClick={scrollRight}
           >
