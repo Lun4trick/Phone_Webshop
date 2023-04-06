@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import NavItems from '../NavBar/NavItems';
+import NavItems from '../../utils/map/NavItems';
 
 type Props = {
   isMenuOpen: boolean;

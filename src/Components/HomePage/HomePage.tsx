@@ -2,6 +2,7 @@
 import React from 'react';
 import { AdScroll } from '../AdScroll/Adscroll';
 import BrandNewModels from '../BrandNewModels/BrandNewModels';
+import ShopByCategory from '../ShopByCategory/ShopByCategory';
 
 export const HomePage: React.FC = () => (
   <section className='h-full flex-1 p-4 max-w-[1200px] mx-auto w-full'>
@@ -10,5 +11,6 @@ export const HomePage: React.FC = () => (
     </h1>
     <AdScroll />
     <BrandNewModels />
+    <ShopByCategory />
   </section>
 );

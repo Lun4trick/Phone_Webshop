@@ -18,6 +18,9 @@ module.exports = {
         'height': 'height'
       },
       backgroundImage: {
+        'category-phones': "url(https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/img/banners/category-phones.png)",
+        'category-tablets': "url(https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/img/banners/category-tablets.png)",
+        'category-accessories': "url(https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/img/banners/category-accessories.png)",
         'iphone-14-back': "url('./imgs/adScrollImgs/iphone-14-back.png')",
         'iphone-14-pros': "url('./imgs/adScrollImgs/iphone-14-pros.png')",
         'airpods': "url('./imgs/adScrollImgs/airpods.png')",

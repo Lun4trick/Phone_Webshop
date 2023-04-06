@@ -53,7 +53,7 @@ const BrandNewModels: React.FC = () => {
   };
 
   return (
-    <>
+    <section className='mb-[80px]'>
       <div className='flex mb-[24px] justify-between gap-6'>
         <p 
           className='flex font-bold text-white text-[22px] leading-8'
@@ -107,7 +107,7 @@ const BrandNewModels: React.FC = () => {
             }
           </div>
         )}
-    </>
+    </section>
   )
 } 
 
