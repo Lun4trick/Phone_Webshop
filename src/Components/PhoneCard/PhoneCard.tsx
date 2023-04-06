@@ -19,7 +19,7 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
 
   return (
     <div className='flex flex-col h-[440px] p-8 bg-[#161827] min-w-[215px]'>
-      <div className='mb-6'>
+      <div className='mb-6 bg-white rounded-lg'>
         <img
           className='rounded-xl max-h-[130px] mx-auto'
           src={phoneImageBaseUrl + image} 
@@ -57,7 +57,10 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
           type='button' 
           className="flex aspect-square items-center justify-center w-[40px] bg-gray-700"
         >
-          <img src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} alt="" />
+          <img 
+            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} 
+            alt="" 
+          />
         </button>
       </div>
     </div>

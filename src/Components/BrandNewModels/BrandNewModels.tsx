@@ -89,21 +89,24 @@ const BrandNewModels: React.FC = () => {
           </button>
         </div>
       </div>
-      <div 
-        className='flex gap-4 overflow-x-hidden scroll-smooth snap-mandatory snap-x' 
-        ref={newModelsContainer}
-        onScroll={handleScroll}
-      >
-        {newModels.length === 0 
-          ? <div className=' bg-gradient-to-b from-white to-slate-800 animate-spin rounded-full h-5 w-5'/>         
-          : (
-            newModels.map(phone => (
+      {newModels.length === 0
+        ? (
+          <div className='mx-auto bg-gradient-to-b from-white to-slate-800 animate-spin rounded-full h-5 w-5'/>
+        )
+        : (
+          <div 
+            className='flex gap-4 overflow-x-hidden scroll-smooth snap-mandatory snap-x' 
+            ref={newModelsContainer}
+            onScroll={handleScroll}
+          >
+            {newModels.map(phone => (
               <div className='snap-start' key={phone.id}>
                 <PhoneCard phonePreview={phone}/>
               </div>
             ))
-          )}
-      </div>
+            }
+          </div>
+        )}
     </>
   )
 } 
