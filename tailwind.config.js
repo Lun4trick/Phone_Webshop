@@ -8,12 +8,25 @@ module.exports = {
       'sans': ['Mont'],
     },
     screens: {
-      'mobile': '0px',
       'tablet': '640px',
+      'tabletBig': '768px',
       'laptop': '1024px',
       'desktop': '1280px',
     },
     extend: {
+      colors: {
+        'Secondary': '#75767F',
+        'Icons': '#4A4D58',
+        'Elements': '#3B3E4A',
+        'Surface-2': '#323542',
+        'Surface-1': '#161827',
+        'Phone-Black': '#0F1121',
+        'Phone-white': '#F1F2F9',
+        'Phone-Accent': '#E8E9EE',
+        'Phone-Green': '#27AE60',
+        'Phone-Red': '#EB5757',
+  
+      },
       transitionProperty: {
         'height': 'height'
       },

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 type TestColor = {text: string, bgImg: string}
 
@@ -78,11 +79,11 @@ export const AdScroll: React.FC = () => {
   }
 
   return (
-    <section id='adScroll' className="flex flex-col w-full mb-[66px]">
+    <section id='adScroll' className="flex tablet:mx-0 flex-col w-full mb-[66px]">
       <div className="flex gap-2 h-fit">
         <button 
           type='button' 
-          className="hidden tablet:flex bg-[#323542] hover:bg-[#4A4D58] transition-colors w-[32px] items-center justify-center grow" 
+          className="hidden tablet:flex bg-Elements hover:bg-[#4A4D58] transition-colors w-[32px] items-center justify-center grow" 
           onClick={() => {
             arrowButtonHandler(Direction.LEFT)
           }}
@@ -103,9 +104,9 @@ export const AdScroll: React.FC = () => {
               </p>
 
               <div className="h-1/2 flex items-end">
-                <button type="button" className="border border-[#323542] hover:bg-[#323542] laptop:text-xl text-xs font-mont min-h-[50%] rounded-full text-slate-400 p-4 transition-colors">
+                <NavLink to='/phones' className="flex items-center border border-[#323542] hover:bg-[#323542] laptop:text-xl text-xs font-mont min-h-[50%] rounded-full text-slate-400 p-4 transition-colors">
                   Order Now
-                </button>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -114,7 +115,7 @@ export const AdScroll: React.FC = () => {
 
         <button 
           type='button' 
-          className="hidden tablet:flex bg-[#323542] hover:bg-[#4A4D58] transition-colors w-[32px] items-center justify-center" 
+          className="hidden tablet:flex bg-Elements hover:bg-[#4A4D58] transition-colors w-[32px] items-center justify-center" 
           onClick={() => {
             arrowButtonHandler(Direction.RIGHT)
           }}
@@ -128,7 +129,7 @@ export const AdScroll: React.FC = () => {
             key={item.text} 
             className={
               `h-2 w-4 pb-[3px] px-[3px] cursor-pointer border-b-4 flex 
-              ${(item.text === currentElement.text) ? ' border-white' : ' border-gray-600'}`
+              ${(item.text === currentElement.text) ? ' border-Phone-white' : ' border-gray-600'}`
             }
             onClick={() => {
               clearTimeout(timedAdChange)

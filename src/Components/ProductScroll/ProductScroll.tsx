@@ -98,7 +98,7 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
         )
         : (
           <div 
-            className='flex gap-4 overflow-x-hidden scroll-smooth snap-mandatory snap-x' 
+            className='flex max-h-[440px] gap-4 scroll-smooth snap-mandatory snap-x overflow-hidden' 
             ref={newModelsContainer}
             onScroll={handleScroll}
           >

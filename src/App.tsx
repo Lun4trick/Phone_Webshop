@@ -7,7 +7,7 @@ import { BurgerMenu } from './Components/BurgerMenu';
 import { HomePage } from './Components/HomePage';
 import { loadPhones } from './features/PhonesSlice';
 import { useAppDispatch } from './app/hooks';
-import MobilePhones from './Components/MobilePhones/MobilePhones';
+import ProductPage from './Components/ProductPage/ProductsPage';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,10 +44,10 @@ const App: React.FC = () => {
   }, [isMenuOpen])
   
   return (
-    <div className="min-h-screen flex flex-col m-0 bg-[#0F1121]">
+    <div className="min-h-screen min-w-[264px] flex flex-col m-0 bg-Phone-Black">
       <Header onMenuAction={onMenuAction} isMenuOpen={isMenuOpen}/>
       <BurgerMenu isMenuOpen={isMenuOpen} />
-      <main>
+      <main className='px-4 tablet:px-6 desktop:px-8'>
         <Routes>
           <Route
             path="/home"
@@ -56,9 +56,9 @@ const App: React.FC = () => {
                 to="/"
                 replace
               />
-            )}
-            
+            )} 
           />
+          
           <Route
             path="/"
             element={
@@ -69,14 +69,16 @@ const App: React.FC = () => {
           <Route
             path="/phones"
             element={
-              <MobilePhones />
+              <ProductPage />
             }
           />
 
           <Route
             path="*"
             element={
-              <h1 className="h-full text-6xl text-white">Page not found</h1>
+              <h1 className="h-full text-6xl text-Phone-white">
+                Page not found
+              </h1>
             }
           />
         </Routes>

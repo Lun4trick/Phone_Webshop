@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import ProductCategories from '../../utils/map/ProductCategories';
 
@@ -9,7 +10,11 @@ const ShopByCategory: React.FC = () => (
     </p>
     <div className='flex flex-col tablet:flex-row w-full gap-4'>
       {ProductCategories.map(category => (
-        <div className='flex flex-col w-full capitalize hover:scale-105 transition-all'>
+        <NavLink
+          key={category.name}
+          to={category.path}
+          className='flex flex-col w-full capitalize hover:scale-105 transition-all'
+        >
           <div 
             className={cn(
               'w-full aspect-square bg-no-repeat mb-6',
@@ -27,7 +32,7 @@ const ShopByCategory: React.FC = () => (
           <p className='text-white'>
             {category.name}
           </p>
-        </div>
+        </NavLink>
       ))}
     </div>
   </section>

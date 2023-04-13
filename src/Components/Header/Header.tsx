@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const Header: React.FC<Props> = ({isMenuOpen, onMenuAction}) => (
-  <header id="header" className="flex bg-[#0F1121] justify-between tablet:justify-start h-fit border-b border-gray-600 sticky top-0">
+  <header id="header" className="flex mb-8 bg-Phone-Black justify-between tablet:justify-start h-fit border-b border-Surface-2 sticky top-0">
     <div className="p-4 laptop:px-6">
       <img 
         className="h-5 w-16 laptop:h-7 laptop:w-20" 
@@ -21,7 +21,7 @@ export const Header: React.FC<Props> = ({isMenuOpen, onMenuAction}) => (
     </nav>
     <button 
       type='button' 
-      className="p-4 border-l border-gray-600 tablet:hidden"
+      className="p-4 border-l border-Surface-2 tablet:hidden"
       onClick={onMenuAction}
     >
       <img 

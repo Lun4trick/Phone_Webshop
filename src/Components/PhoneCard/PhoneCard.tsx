@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { PhonePreview } from '../../utils/types/PhonePreviewType'
 
 type Props = {
@@ -20,14 +21,14 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
   const isOnSale = fullPrice - price > 90;
 
   return (
-    <div className='flex flex-col h-[440px] p-8 bg-[#161827] min-w-[215px]'>
-      <div className='mb-6 bg-white rounded-lg'>
+    <div className='flex flex-col p-8 bg-[#161827] h-fit flex-1 min-w-[215px] w-full max-w-[250px] tablet:max-w-none mx-auto tablet:mx-0 group transition-all'>
+      <div className='mb-6 rounded-lg mx-auto'>
         <img
           className='rounded-xl max-h-[130px] mx-auto'
           src={phoneImageBaseUrl + image} 
           alt={phonePreview.id} />
       </div>
-      <p className='text-white leading-5 text-[14px] mb-2 line-clamp-2 hover:line-clamp-none'>
+      <p className='text-white min-h-[40px] leading-5 text-[14px] mb-2 line-clamp-2 group-hover:line-clamp-none'>
         {name}
       </p>
       <div className='flex gap-2'>
@@ -43,22 +44,25 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
       <div className='w-full border-b-[1px] border-[#3B3E4A] mb-4'/>
       <div>
         {specs.map(
-          spec => (
-            <div id={name} className='flex justify-between mb-2 text-[12px]'>
+          ([spec, value]) => (
+            <div 
+              key={uuidv4()}
+              className='flex justify-between mb-2 text-[12px]'
+            >
               <p className='text-[#75767F]'>
-                {spec[0]}
+                {spec}
               </p>
               <p className='text-white'>
-                {spec[1]}
+                {value}
               </p>
             </div>
           )
         )}
       </div>
-      <div className='flex justify-between'>
+      <div className='flex gap-2'>
         <button 
           type='button'
-          className='p-[10px] text-[14px] text-white bg-[#905BFF]'
+          className='p-[10px] text-[14px] flex-1 text-white bg-[#905BFF]'
         >
           Add to cart
         </button>
