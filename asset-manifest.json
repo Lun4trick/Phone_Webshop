@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/phone_webshop/static/css/main.473145b5.css",
-    "main.js": "/phone_webshop/static/js/main.a9e98719.js",
+    "main.css": "/phone_webshop/static/css/main.0f5a8925.css",
+    "main.js": "/phone_webshop/static/js/main.c59c67ce.js",
     "static/js/787.2a73ebea.chunk.js": "/phone_webshop/static/js/787.2a73ebea.chunk.js",
     "static/media/Mont-Regular.otf": "/phone_webshop/static/media/Mont-Regular.1d26d89f7339866d3133.otf",
     "static/media/iphone-14-pros.png": "/phone_webshop/static/media/iphone-14-pros.317915cff54d76a278b1.png",
@@ -9,12 +9,12 @@
     "static/media/ipad-pro.png": "/phone_webshop/static/media/ipad-pro.576914f54df26a6a0466.png",
     "static/media/airpods.png": "/phone_webshop/static/media/airpods.c29ae53392607cbe6bf5.png",
     "index.html": "/phone_webshop/index.html",
-    "main.473145b5.css.map": "/phone_webshop/static/css/main.473145b5.css.map",
-    "main.a9e98719.js.map": "/phone_webshop/static/js/main.a9e98719.js.map",
+    "main.0f5a8925.css.map": "/phone_webshop/static/css/main.0f5a8925.css.map",
+    "main.c59c67ce.js.map": "/phone_webshop/static/js/main.c59c67ce.js.map",
     "787.2a73ebea.chunk.js.map": "/phone_webshop/static/js/787.2a73ebea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.473145b5.css",
-    "static/js/main.a9e98719.js"
+    "static/css/main.0f5a8925.css",
+    "static/js/main.c59c67ce.js"
   ]
 }
