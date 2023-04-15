@@ -1,14 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
-import SortByTypes from '../../utils/types/SortByOptions';
+import { PaginationOptions, SortByTypes, SortMenuType } from '../../utils/types/SortByMenuTypes';
 import ItemsPerPage from '../../utils/map/ItemsPerPage';
 
 type MenuType = 'sortMenu' | 'pagMenu';
 
-const DropDownMenu: React.FC = () => {
+type Props = {
+  onItemsSortChange: (sortMenu: SortMenuType) => void,
+}
+
+const DropDownMenu: React.FC<Props> = ({ onItemsSortChange }) => {
   const {NEWEST} = SortByTypes;
   const [currentSort, setCurrentSort] = useState<SortByTypes>(NEWEST);
-  const [maxItems, setMaxItems] = useState('16');
+  const [maxItems, setMaxItems] = useState<PaginationOptions>('16');
   const [{isSortOpen, isPagOpen}, setMenusOpen] = useState({isSortOpen: false, isPagOpen: false});
   const sortTypes = Object.values(SortByTypes);
   const sortMenuRef = useRef<HTMLDivElement | null>(null);
@@ -63,6 +67,10 @@ const DropDownMenu: React.FC = () => {
       })
     }
   }, [])
+
+  useEffect(() => {
+    onItemsSortChange({sort: currentSort, pagination: maxItems});
+  }, [currentSort, maxItems])
   
 
   return (
@@ -101,17 +109,17 @@ const DropDownMenu: React.FC = () => {
                 {'hidden': !isSortOpen}
               )}
             >
-              {(sortTypes).map((sortT) => (
+              {(sortTypes).map((sortType) => (
                 <button 
                   className='text-Secondary bg-opacity-95 text-[14px] bg-Phone-black text-left py-[10px] pl-[12px] hover:text-Phone-white hover:bg-Surface-2'
-                  key={sortT}
+                  key={sortType}
                   type='button' 
                   onClick={() => {
-                    setCurrentSort(sortT);
+                    setCurrentSort(sortType);
                     menuCloseHandler('sortMenu')
                   }}
                 >
-                  {sortT}
+                  {sortType}
                 </button>
               ))}
             </div>
@@ -152,17 +160,17 @@ const DropDownMenu: React.FC = () => {
                 {'hidden': !isPagOpen}
               )}
             >
-              {(ItemsPerPage).map((maxI) => (
+              {ItemsPerPage.map((itemPerPage) => (
                 <button 
                   className='text-Secondary text-[14px] bg-opacity-95 bg-Phone-black text-left py-[10px] pl-[12px] hover:text-Phone-white hover:bg-Surface-2'
-                  key={maxI}
+                  key={itemPerPage}
                   type='button' 
                   onClick={() => {
-                    setMaxItems(maxI);
+                    setMaxItems(itemPerPage);
                     menuCloseHandler('pagMenu')
                   }}
                 >
-                  {maxI}
+                  {itemPerPage}
                 </button>
               ))}
             </div>
