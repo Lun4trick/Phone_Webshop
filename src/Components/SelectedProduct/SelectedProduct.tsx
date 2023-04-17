@@ -46,7 +46,7 @@ const SelectedProduct: React.FC = () => {
     ['Built in memory', capacity],
     ['Camera', camera],
     ['Zoom', zoom],
-    ['Cell', cell.join(', ')],
+    ['Cell', (cell ?? []).join(', ')],
   ];
   const maybeIntrested = useAppSelector(state => state.allPhones.phones)
     .filter(({ fullPrice, name: maybeInterestedName }) => (

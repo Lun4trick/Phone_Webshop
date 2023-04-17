@@ -19,8 +19,12 @@ const PathHistory: React.FC = () => {
         />
       </NavLink>
       {splitedPath.map(pathElement => (
-        <>
-          <p className='text-Icons'>
+        <React.Fragment
+          key={pathElement}
+        >
+          <p
+            className='text-Icons'
+          >
             {'>'}
           </p>
           <NavLink
@@ -30,7 +34,7 @@ const PathHistory: React.FC = () => {
           >
             {pathElement}
           </NavLink>
-        </>
+        </React.Fragment>
       ))}
       <p className='text-Icons'>
         {'>'}
