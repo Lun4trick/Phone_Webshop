@@ -11,7 +11,7 @@ export const Header: React.FC<Props> = ({ isMenuOpen, onMenuAction }) => (
   <header id='header' className='flex mb-8 bg-Phone-Black justify-between tablet:justify-start h-fit border-b border-Surface-2 sticky top-0'>
     <NavLink
       to='/'
-      className='p-4 laptop:px-6'>
+      className='p-4 laptop:px-6 laptop:pr-8'>
       <img
         className='h-5 w-16 laptop:h-7 laptop:w-20'
         src={`${process.env.PUBLIC_URL}/imgs/logo.svg`}

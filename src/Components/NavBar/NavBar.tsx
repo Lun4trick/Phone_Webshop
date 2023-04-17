@@ -4,7 +4,7 @@ import NavItems from '../../utils/map/NavItems';
 
 const NavBar: React.FC = () => (
   <>
-    <ul className='hidden text-slate-100 text-center gap-4 tablet:flex'>
+    <ul className='hidden text-slate-100 text-center gap-8 laptop:gap-16 tablet:flex'>
       {NavItems.map(item => (
         <NavLink
           key={item.path}

@@ -87,7 +87,7 @@ const SelectedProduct: React.FC = () => {
             <section className='flex flex-col tablet:flex-row gap-[25px] laptop:gap-[64px] tablet:items-start'>
               <div className='flex bg-white order-1 tablet:order-2 rounded-xl items-center justify-center mx-auto tablet:mx-0 w-fit tablet:w-full max-w-[442px]'>
                 <img
-                  className='w-[275px] tablet:w-full aspect-square object-contain tablet:max-h-full mx-auto rounded-xl'
+                  className='w-[275px] tablet:w-full aspect-square object-contain tablet:max-h-full mx-auto'
                   src={phoneImageBaseUrl + images[selectedImage]}
                   alt='selected phone image'
                 />
