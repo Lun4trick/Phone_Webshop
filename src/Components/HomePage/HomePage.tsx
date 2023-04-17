@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { AdScroll } from '../AdScroll/Adscroll';
 import ShopByCategory from '../ShopByCategory/ShopByCategory';
@@ -13,19 +12,19 @@ export const HomePage: React.FC = () => {
 
   return (
     <section className='h-full flex-1 max-w-[1200px] mx-auto w-full'>
-      <h1 className="text-Phone-white text-[32px] font-mont font-bold leading-10 mb-[24px]">
+      <h1 className='text-Phone-white text-[32px] font-mont font-bold leading-10 mb-[24px]'>
         Welcome to Nice Gadgets store!
       </h1>
       <AdScroll />
-      <ProductScroll 
+      <ProductScroll
         products={newModels}
         title='Brand new models'
       />
       <ShopByCategory />
-      <ProductScroll 
+      <ProductScroll
         products={hotDeals}
         title='Hot deals'
       />
     </section>
-  )
+  );
 };

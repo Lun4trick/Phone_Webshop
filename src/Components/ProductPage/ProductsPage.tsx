@@ -1,16 +1,16 @@
-
 import React, { useEffect, useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
 import ProductCategories from '../../utils/map/ProductCategories';
 import { useAppSelector } from '../../app/hooks';
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
-import { SortByTypes, type SortMenuType } from '../../utils/types/SortByMenuTypes';
+import { SortByTypes, SortMenuType } from '../../utils/types/SortByMenuTypes';
 import PhoneCard from '../PhoneCard/PhoneCard';
 import usePagination from '../../utils/customHooks/usePagination';
 import NumberOfPages from '../NumberOfPages/NumberOfPages';
-import type ProductType from '../../utils/types/ProductType';
-import PageChangeType from '../../utils/types/PAgeChangeType';
+import ProductType from '../../utils/types/ProductType';
+import PageChangeType from '../../utils/types/PageChangeType';
+import PathHistory from '../PathHistory/PathHistory';
 
 const ProductPage: React.FC = () => {
   const location = useLocation().pathname;
@@ -39,6 +39,11 @@ const ProductPage: React.FC = () => {
       default:
         setCurrentPage(exactPage ?? 0);
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [currentPage]);
 
   useEffect(() => {
@@ -49,21 +54,15 @@ const ProductPage: React.FC = () => {
     setItemSort(sortMenu);
   }, [sort, pagination]);
 
+  useEffect(() => {
+    if (splitedProducts.length && splitedProducts.length < currentPage + 1) {
+      setCurrentPage(splitedProducts.length - 1);
+    }
+  }, [splitedProducts]);
+
   return (
     <section className='max-w-[1200px] mx-auto'>
-      <div className='flex gap-[15px] mb-6'>
-        <img
-          className='aspect-square w-4 fill-Phone-white'
-          src={`${process.env.PUBLIC_URL}/imgs/Home-ico.svg`}
-          alt='Home'
-        />
-        <p className='text-Icons'>
-          {'>'}
-        </p>
-        <p className='capitalize text-Secondary'>
-          {currentProduct}
-        </p>
-      </div>
+      <PathHistory />
       <h1 className='text-white text-4xl capitalize font-bold mb-2'>
         {title}
       </h1>
@@ -71,7 +70,7 @@ const ProductPage: React.FC = () => {
         {`${products.length} models`}
       </p>
       <DropDownMenu onItemsSortChange={onItemsSortChange} />
-      {splitedProducts.length > 0 && (
+      {(splitedProducts.length > 0 && splitedProducts.length >= currentPage + 1) && (
         <>
           <div
             className='grid grid-cols-1 tablet:grid-cols-2 tabletBig:grid-cols-3 laptop:grid-cols-4 gap-x-4 gap-y-10 w-full mb-8'
@@ -80,7 +79,11 @@ const ProductPage: React.FC = () => {
               <PhoneCard key={uuidv4()} phonePreview={product}/>
             ))}
           </div>
-          <NumberOfPages pages={splitedProducts}/>
+          <NumberOfPages
+            pages={splitedProducts}
+            onPageChange={onPageChange}
+            currentPage={currentPage}
+          />
         </>
       )}
     </section>

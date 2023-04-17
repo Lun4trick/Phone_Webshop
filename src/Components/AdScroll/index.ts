@@ -1,1 +1,1 @@
-export * from './Adscroll'
+export * from './Adscroll';

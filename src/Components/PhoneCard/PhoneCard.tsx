@@ -1,21 +1,22 @@
-import React from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import { PhonePreview } from '../../utils/types/PhonePreviewType'
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { type PhonePreview } from '../../utils/types/PhonePreviewType';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
-  phonePreview: PhonePreview, 
-}
+  phonePreview: PhonePreview;
+};
 
 const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
-  const phoneImageBaseUrl = 'https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/'
-  const { 
-    name, 
-    image, 
+  const phoneImageBaseUrl = 'https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/';
+  const {
+    name,
+    image,
     price,
     fullPrice,
     screen,
     capacity,
-    ram
+    ram,
   } = phonePreview;
   const specs = [['Screen', screen], ['Capacity', capacity], ['RAM', ram]];
   const isOnSale = fullPrice - price > 90;
@@ -25,12 +26,14 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
       <div className='mb-6 rounded-lg mx-auto'>
         <img
           className='rounded-xl max-h-[130px] mx-auto'
-          src={phoneImageBaseUrl + image} 
+          src={phoneImageBaseUrl + image}
           alt={phonePreview.id} />
       </div>
-      <p className='text-white min-h-[40px] leading-5 text-[14px] mb-2 line-clamp-2 group-hover:line-clamp-none'>
+      <NavLink
+        to={`/phones/${phonePreview.itemId}`}
+        className='text-white min-h-[40px] leading-5 text-[14px] mb-2 line-clamp-2 group-hover:line-clamp-none'>
         {name}
-      </p>
+      </NavLink>
       <div className='flex gap-2'>
         <p className='text-white mb-2 font-bold text-[22px]'>
           {`$${price}`}
@@ -45,7 +48,7 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
       <div>
         {specs.map(
           ([spec, value]) => (
-            <div 
+            <div
               key={uuidv4()}
               className='flex justify-between mb-2 text-[12px]'
             >
@@ -56,28 +59,28 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
                 {value}
               </p>
             </div>
-          )
+          ),
         )}
       </div>
       <div className='flex gap-2'>
-        <button 
+        <button
           type='button'
-          className='p-[10px] text-[14px] flex-1 text-white bg-[#905BFF]'
+          className='p-[10px] text-[14px] flex-1 text-white bg-Phone-Accent hover:bg-[#A378FF]'
         >
           Add to cart
         </button>
-        <button 
-          type='button' 
-          className="flex aspect-square items-center justify-center w-[40px] bg-gray-700"
+        <button
+          type='button'
+          className='flex aspect-square items-center justify-center w-[40px] bg-Surface-2 hover:bg-Icons'
         >
-          <img 
-            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} 
-            alt="" 
+          <img
+            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+            alt=''
           />
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default PhoneCard;

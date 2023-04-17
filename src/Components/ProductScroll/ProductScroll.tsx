@@ -2,17 +2,18 @@ import React, { useRef, useState } from 'react';
 import cn from 'classnames';
 import PhoneCard from '../PhoneCard/PhoneCard';
 import ScrollPosition from '../../utils/types/ScrollPosition';
-import { PhonePreview } from '../../utils/types/PhonePreviewType';
+import { type PhonePreview } from '../../utils/types/PhonePreviewType';
+import Loader from '../Loader/Loader';
 
 type Props = {
-  products: PhonePreview[],
-  title: string,
-}
+  products: PhonePreview[];
+  title: string;
+};
 
 const ProductScroll: React.FC<Props> = ({ products, title }) => {
-  const { start, middle, end} = ScrollPosition;
-  const newModelsContainer = useRef<HTMLDivElement | null>(null);
-  const [currentScrollPos, setCurrentScrollPos] = useState(start);
+  const { START, MIDDLE, END } = ScrollPosition;
+  const newModelsContainer = useRef<HTMLDivElement>(null);
+  const [currentScrollPos, setCurrentScrollPos] = useState(START);
 
   const handleScroll = () => {
     if (newModelsContainer.current) {
@@ -20,18 +21,19 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
       const isAtStart = scrollContainer.scrollLeft === 0;
       const isAtEnd = scrollContainer.scrollLeft + scrollContainer.clientWidth === scrollContainer.scrollWidth;
 
-      if(isAtStart && currentScrollPos !== start) {
-        setCurrentScrollPos(start);
-
-        return;
-      };
-
-      if(isAtEnd && currentScrollPos !== end) {
-        setCurrentScrollPos(end);
+      if (isAtStart && currentScrollPos !== START) {
+        setCurrentScrollPos(START);
 
         return;
       }
-      setCurrentScrollPos(middle);
+
+      if (isAtEnd && currentScrollPos !== END) {
+        setCurrentScrollPos(END);
+
+        return;
+      }
+
+      setCurrentScrollPos(MIDDLE);
     }
   };
 
@@ -40,17 +42,17 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
       newModelsContainer.current
         .scrollBy({
           left: -200,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
     }
   };
-  
+
   const scrollRight = () => {
     if (newModelsContainer.current) {
       newModelsContainer.current
         .scrollBy({
           left: 200,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
     }
   };
@@ -58,47 +60,47 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
   return (
     <section className='mb-[80px]'>
       <div className='flex mb-[24px] justify-between gap-6'>
-        <p 
+        <p
           className='flex font-bold text-white text-[22px] leading-8'
         >
           {title}
         </p>
         <div className='flex gap-4'>
-          <button 
-            type='button' 
+          <button
+            type='button'
             className={cn(
-              "bg-gray-600 h-[32px] aspect-square flex items-center justify-center",
-              {"bg-transparent border-[1px] border-gray-700": currentScrollPos === start}
+              'bg-gray-600 h-[32px] aspect-square flex items-center justify-center',
+              { 'bg-transparent border-[1px] border-gray-700': currentScrollPos === START },
             )}
             onClick={scrollLeft}
           >
-            <img 
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`} 
-              alt="" 
+            <img
+              src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`}
+              alt=''
             />
           </button>
-          <button 
+          <button
             type='button'
             className={cn(
-              "bg-gray-600 h-[32px] aspect-square flex items-center justify-center",
-              {"bg-transparent border-[1px] border-gray-700": currentScrollPos === end}
+              'bg-gray-600 h-[32px] aspect-square flex items-center justify-center',
+              { 'bg-transparent border-[1px] border-gray-700': currentScrollPos === END },
             )}
             onClick={scrollRight}
           >
-            <img 
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`} 
-              alt="" 
+            <img
+              src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`}
+              alt=''
             />
           </button>
         </div>
       </div>
       {products.length === 0
         ? (
-          <div className='mx-auto bg-gradient-to-b from-white to-slate-800 animate-spin rounded-full h-5 w-5'/>
+          <Loader />
         )
         : (
-          <div 
-            className='flex max-h-[440px] gap-4 scroll-smooth snap-mandatory snap-x overflow-hidden' 
+          <div
+            className='flex max-h-[440px] gap-4 scroll-smooth snap-mandatory snap-x overflow-hidden'
             ref={newModelsContainer}
             onScroll={handleScroll}
           >
@@ -111,7 +113,7 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
           </div>
         )}
     </section>
-  )
-} 
+  );
+};
 
 export default ProductScroll;

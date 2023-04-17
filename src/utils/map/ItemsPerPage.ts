@@ -1,9 +1,9 @@
-import { PaginationOptions } from '../types/SortByMenuTypes';
+import { type PaginationOptions } from '../types/SortByMenuTypes';
 
 const ItemsPerPage: PaginationOptions[] = [
   '16',
   '32',
-  'All'
+  'All',
 ];
 
 export default ItemsPerPage;

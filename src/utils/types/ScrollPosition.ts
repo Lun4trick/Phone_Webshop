@@ -1,7 +1,7 @@
 enum ScrollPosition {
-  start,
-  middle,
-  end
+  START,
+  MIDDLE,
+  END,
 }
 
 export default ScrollPosition;

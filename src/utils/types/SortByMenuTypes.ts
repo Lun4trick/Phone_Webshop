@@ -3,11 +3,11 @@ export enum SortByTypes {
   OLDEST = 'Oldest',
   PRICEHIGH = 'Price highest',
   PRICELOW = 'Price lowest',
-};
+}
 
 export type PaginationOptions = '16' | '32' | 'All';
 
 export type SortMenuType = {
-  sort: SortByTypes, 
-  pagination: PaginationOptions,
+  sort: SortByTypes;
+  pagination: PaginationOptions;
 };

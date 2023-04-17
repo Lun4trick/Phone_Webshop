@@ -1,14 +1,12 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/no-cycle */
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, type ThunkAction, type Action } from '@reduxjs/toolkit';
 import PhonesSlice from '../features/PhonesSlice';
 import SelectedPhoneSlice from '../features/SelectedPhoneSlice';
 
 export const store = configureStore({
   reducer: {
     allPhones: PhonesSlice,
-    selectedPhone: SelectedPhoneSlice
-  }
+    selectedPhone: SelectedPhoneSlice,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

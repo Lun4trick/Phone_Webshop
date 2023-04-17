@@ -1,17 +1,16 @@
-/* eslint-disable no-param-reassign */
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// eslint-disable-next-line import/no-cycle
-import { RootState } from '../app/store';
-import { PhonePreview } from '../utils/types/PhonePreviewType';
+import { type RootState } from '../app/store';
+import { type PhonePreview } from '../utils/types/PhonePreviewType';
 
-export interface PhonesState {
+export type PhonesState = {
   phones: PhonePreview[];
   status: 'idle' | 'loading' | 'failed';
-}
+};
 const initialState: PhonesState = {
   phones: [],
-  status: 'idle'
+  status: 'idle',
 };
 
 export const loadPhones = createAsyncThunk(
@@ -20,26 +19,26 @@ export const loadPhones = createAsyncThunk(
     const response = await axios.get('https://phone-catalog-bcknd.onrender.com/data');
 
     return response.data;
-  })
+  }),
 );
 
 export const PhonesSlice = createSlice({
   name: 'phones',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers(builder) {
     builder
-      .addCase(loadPhones.pending, (state) => {
+      .addCase(loadPhones.pending, state => {
         state.status = 'loading';
       })
       .addCase(loadPhones.fulfilled, (state, action) => {
         state.status = 'idle';
         state.phones = action.payload;
       })
-      .addCase(loadPhones.rejected, (state) => {
+      .addCase(loadPhones.rejected, state => {
         state.status = 'failed';
       });
-  }
+  },
 });
 
 export const setAllPhones = (state: RootState) => state.allPhones;
