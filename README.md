@@ -1,47 +1,33 @@
-# Getting Started with Create React App
+# Phone Webshop
+This is a webshop project for selling phones, built as a learning exercise. It utilizes React, Redux, and TypeScript for the frontend, and Express, render.com, and AWS for the backend.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Please note that the backend is currently a basic server implemented solely for enabling frontend development.
 
-## Available Scripts
+# Technologies Used
 
-In the project directory, you can run:
+- Frontend: 
+  - React 
+  - Redux 
+  - TypeScript
+  - HTML
+  - Tailwind
+  
+- Backend: 
+  - Express 
+  - render.com
+  - AWS
 
-### `npm start`
+# Usage
+You can access the webshop demo at the following link: https://lun4trick.github.io/phone_webshop/#/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Note: The frontend of the webshop is connected to a backend server, which is hosted on render.com and AWS.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Upcoming Tasks
+In the upcoming days, the following tasks are planned to be worked on:
 
-### `npm test`
+- Adding a "Cart" functionality to allow users to add products to their cart and proceed to checkout.
+- Adding a "Favorites" functionality to allow users to mark products as their favorites and view them later.
+- Making the project responsive when a product is selected to ensure a seamless user experience across different devices.
+- Minor bug fixing to address any issues or glitches that may arise during development.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# Phone_Webshop
+# Thank you for reviewing this project! Please feel free to provide any feedback or suggestions.
