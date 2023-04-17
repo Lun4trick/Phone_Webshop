@@ -92,7 +92,9 @@ export const AdScroll: React.FC = () => {
             <div className='justify-center text-xl laptop:text-4xl p-8 laptop:p-12 bg-[#0d0e11] rounded-3xl'>
               <p className='font-extrabold font-mont text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-400'>
                 Now available in our store!
-                <span className='text-orange-300 hidden laptop:inline'>&#128076;</span>
+                <span className='text-orange-300 hidden laptop:inline'>
+                  &#128076;
+                </span>
               </p>
 
               <p className='text-gray-500 font-mont font-bold laptop:text-sm text-xs'>

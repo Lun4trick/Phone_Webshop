@@ -51,7 +51,7 @@ const App: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className='min-h-screen min-w-[264px] flex flex-col m-0 bg-Phone-Black'>
+    <div className='min-h-screen min-w-[264px] flex flex-col bg-Phone-Black'>
       <Header onMenuAction={onMenuAction} isMenuOpen={isMenuOpen}/>
       <BurgerMenu isMenuOpen={isMenuOpen} />
       <main className='px-4 tablet:px-6 desktop:px-8'>
