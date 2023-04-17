@@ -75,8 +75,8 @@ export const AdScroll: React.FC = () => {
   };
 
   return (
-    <section id='adScroll' className='flex tablet:mx-0 flex-col w-full mb-[66px]'>
-      <div className='flex gap-2 h-fit'>
+    <section id='adScroll' className='flex flex-col w-full mb-[66px]'>
+      <div className='flex gap-2 h-fit -mx-4 tablet:mx-0'>
         <button
           type='button'
           className='hidden tablet:flex bg-Elements hover:bg-[#4A4D58] transition-colors w-[32px] items-center justify-center grow'
