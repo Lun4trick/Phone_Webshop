@@ -7,6 +7,7 @@ import { selectPhone } from '../../features/SelectedPhoneSlice';
 import cn from 'classnames';
 import PathHistory from '../PathHistory/PathHistory';
 import Loader from '../Loader/Loader';
+import ProductScroll from '../ProductScroll/ProductScroll';
 
 const SelectedProduct: React.FC = () => {
   const { id } = useParams();
@@ -28,19 +29,37 @@ const SelectedProduct: React.FC = () => {
     resolution,
     processor,
     ram,
+    description,
+    camera,
+    zoom,
+    cell,
   // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-nullish-coalescing
   } = selectedProduct! ?? {};
-  const phoneWithoutColor = id?.split('-').slice(0, -2).join('-');
+  const simplifiedPhoneName = id?.split('-').slice(0, -2).join('-');
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedCapacity, setSelectedCapacity] = useState<string | null>(null);
   const isLoaded = selectedColor && selectedCapacity && selectedProduct;
   const isOnSale = priceRegular - priceDiscount > 90;
   const specs = [['Screen', screen], ['Resolution', resolution], ['RAM', ram], ['Processor', processor]];
+  const specsExtended = [
+    ...specs,
+    ['Built in memory', capacity],
+    ['Camera', camera],
+    ['Zoom', zoom],
+    ['Cell', cell.join(', ')],
+  ];
+  const maybeIntrested = useAppSelector(state => state.allPhones.phones)
+    .filter(({ fullPrice, name: maybeInterestedName }) => (
+      ((fullPrice - priceDiscount <= 200 && fullPrice - priceDiscount >= -200))
+      && (name !== maybeInterestedName)
+    ));
 
   useEffect(() => {
     if (id) {
       dispatch(selectPhone(id));
     }
+
+    console.log(cell);
   }, [id]);
 
   useEffect(() => {
@@ -109,7 +128,7 @@ const SelectedProduct: React.FC = () => {
                           onClick={() => {
                             setSelectedColor(currentColor);
                           }}
-                          to={`/phones/${phoneWithoutColor}-${selectedCapacity.toLowerCase()}-${currentColor}`}
+                          to={`/phones/${simplifiedPhoneName}-${selectedCapacity.toLowerCase()}-${currentColor}`}
                           className={`w-[30px] h-[30px] rounded-full bg-pc-${currentColor}`}/>
                       </div>
                     ))
@@ -137,7 +156,7 @@ const SelectedProduct: React.FC = () => {
                           onClick={() => {
                             setSelectedCapacity(currentCapacity);
                           }}
-                          to={`/phones/${phoneWithoutColor}-${currentCapacity.toLowerCase()}-${selectedColor}`}
+                          to={`/phones/${simplifiedPhoneName}-${currentCapacity.toLowerCase()}-${selectedColor}`}
                         >
                           {currentCapacity.slice(0, -2) + ' GB'}
                         </NavLink>
@@ -185,6 +204,46 @@ const SelectedProduct: React.FC = () => {
                   </div>
                 ))}
               </div>
+              <div className='mb-14'>
+                <h1 className='text-xl text-Phone-white pb-4 border-b-[1px] border-Elements mb-8'>
+                  About
+                </h1>
+                <div className='flex flex-col gap-8'>
+                  {description.map(part => (
+                    <div
+                      key={part.title}
+                    >
+                      <p className='text-base text-Phone-white mb-4 self-stretch'>
+                        {part.title}
+                      </p>
+                      <p className='text-sm text-[#89939A] self-stretch'>
+                        {part.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className='pb-4 border-b-[1px] border-Elements text-xl text-Phone-white mb-8'>
+                  Tech specs
+                </p>
+                <div className='mb-[56px]'>
+                  {specsExtended.map(([spec, value]) => (
+                    <div
+                      key={uuidv4()}
+                      className='flex justify-between mb-2 text-[12px]'
+                    >
+                      <p className='text-[#75767F]'>
+                        {spec}
+                      </p>
+                      <p className='text-white'>
+                        {value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <ProductScroll title='You may also like' products={maybeIntrested}/>
             </div>
           </div>
         </div>

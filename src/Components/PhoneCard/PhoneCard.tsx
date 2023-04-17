@@ -22,16 +22,20 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
   const isOnSale = fullPrice - price > 90;
 
   return (
-    <div className='flex flex-col p-8 bg-[#161827] h-fit flex-1 min-w-[215px] w-full max-w-[250px] tablet:max-w-none mx-auto tablet:mx-0 group transition-all'>
+    <div className='flex flex-col p-8 bg-[#161827] h-fit flex-1 min-w-[215px] w-full max-w-[250px] tablet:max-w-none mx-auto tablet:mx-0'>
       <div className='mb-6 rounded-lg mx-auto'>
-        <img
-          className='rounded-xl max-h-[130px] mx-auto'
-          src={phoneImageBaseUrl + image}
-          alt={phonePreview.id} />
+        <NavLink
+          to={`/phones/${phonePreview.itemId}`}
+        >
+          <img
+            className='rounded-xl max-h-[130px] mx-auto hover:scale-110 transition-all'
+            src={phoneImageBaseUrl + image}
+            alt={phonePreview.id} />
+        </NavLink>
       </div>
       <NavLink
         to={`/phones/${phonePreview.itemId}`}
-        className='text-white min-h-[40px] leading-5 text-[14px] mb-2 line-clamp-2 group-hover:line-clamp-none'>
+        className='text-white min-h-[40px] leading-5 text-[14px] mb-2 line-clamp-2 hover:line-clamp-none'>
         {name}
       </NavLink>
       <div className='flex gap-2'>
