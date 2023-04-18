@@ -11,6 +11,7 @@ import NumberOfPages from '../NumberOfPages/NumberOfPages';
 import ProductType from '../../utils/types/ProductType';
 import PageChangeType from '../../utils/types/PageChangeType';
 import PathHistory from '../PathHistory/PathHistory';
+import getSortedProducts from '../../utils/helpers/getSortedProducts';
 
 const ProductPage: React.FC = () => {
   const location = useLocation().pathname;
@@ -47,7 +48,8 @@ const ProductPage: React.FC = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    setSplitedProducts(pagination, products);
+    const sortedProducts = getSortedProducts(sort, products);
+    setSplitedProducts(pagination, sortedProducts);
   }, [sort, pagination, products]);
 
   const onItemsSortChange = useCallback((sortMenu: SortMenuType) => {
