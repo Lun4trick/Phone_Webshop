@@ -68,6 +68,8 @@ const SelectedProduct: React.FC = () => {
     if (selectedCapacity !== capacity) {
       setSelectedCapacity(capacity);
     }
+
+    setSelectedImage(0);
   }, [selectedProduct]);
 
   return (
