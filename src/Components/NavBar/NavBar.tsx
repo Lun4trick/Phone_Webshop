@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import NavItems from '../../utils/map/NavItems';
 
@@ -9,7 +10,12 @@ const NavBar: React.FC = () => (
         <NavLink
           key={item.path}
           to={item.path}
-          className='flex items-center border-b-2 border-transparent hover:border-white transition-all duration-300'
+          className={({ isActive }) => (
+            cn(
+              'flex items-center border-b-2 text-Phone-white border-Phone-white transition-all duration-300',
+              { 'text-Secondary border-transparent hover:border-Phone-white': !isActive },
+            )
+          )}
         >
           <button
             className='uppercase text-xs tablet:text-sm laptop:text-base'

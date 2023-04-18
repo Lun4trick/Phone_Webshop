@@ -58,8 +58,6 @@ const SelectedProduct: React.FC = () => {
     if (id) {
       dispatch(selectPhone(id));
     }
-
-    console.log(cell);
   }, [id]);
 
   useEffect(() => {
