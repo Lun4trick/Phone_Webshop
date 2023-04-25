@@ -1,7 +1,11 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import cn from 'classnames';
 import { type PhonePreview } from '../../utils/types/PhonePreviewType';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { addCartItem, removeFromCart } from '../../features/CartSlice';
+import { addFavouriteItem, removeFromFavourites } from '../../features/FavouritesSlice';
 
 type Props = {
   phonePreview: PhonePreview;
@@ -10,6 +14,7 @@ type Props = {
 const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
   const phoneImageBaseUrl = 'https://phone-shop-imgs.s3.eu-north-1.amazonaws.com/';
   const {
+    itemId,
     name,
     image,
     price,
@@ -19,7 +24,28 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
     ram,
   } = phonePreview;
   const specs = [['Screen', screen], ['Capacity', capacity], ['RAM', ram]];
+  const dispatch = useAppDispatch();
+  const currentCart = useAppSelector(state => state.cartItems).cartItems;
+  const currenFavourites = useAppSelector(state => state.favouriteItems).favouriteItems;
   const isOnSale = fullPrice - price > 90;
+  const isItemInCart = currentCart.includes(itemId);
+  const isItemInFavourites = currenFavourites.includes(itemId);
+
+  const addToCartHandler = () => {
+    if (isItemInCart) {
+      dispatch(removeFromCart(itemId));
+    } else {
+      dispatch(addCartItem(itemId));
+    }
+  };
+
+  const addToFavouritesHandler = () => {
+    if (isItemInFavourites) {
+      dispatch(removeFromFavourites(itemId));
+    } else {
+      dispatch(addFavouriteItem(itemId));
+    }
+  };
 
   return (
     <div className='flex flex-col p-8 bg-[#161827] h-fit flex-1 min-w-[215px] w-full max-w-[250px] tablet:max-w-none mx-auto tablet:mx-0'>
@@ -69,17 +95,31 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
       <div className='flex gap-2'>
         <button
           type='button'
-          className='p-[10px] text-[14px] flex-1 text-white bg-Phone-Accent hover:bg-[#A378FF]'
+          onClick={addToCartHandler}
+          className={cn(
+            'p-[10px] text-[14px] flex-1 text-white transition-all duration-300',
+            { 'bg-Phone-Accent hover:bg-[#A378FF]': !isItemInCart },
+            { 'bg-Surface-2 hover:bg-Icons': isItemInCart },
+          )}
         >
-          Add to cart
+          {isItemInCart
+            ? 'Added'
+            : 'Add to cart'}
         </button>
         <button
           type='button'
-          className='flex aspect-square items-center justify-center w-[40px] bg-Surface-2 hover:bg-Icons'
+          onClick={addToFavouritesHandler}
+          className={cn(
+            'flex aspect-square items-center justify-center w-[40px] hover:bg-Icons',
+            { 'bg-Surface-2': !isItemInFavourites },
+            { 'bg-transparent border-[1px] border-Elements': isItemInFavourites },
+          )}
         >
           <img
-            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
-            alt=''
+            src={isItemInFavourites
+              ? `${process.env.PUBLIC_URL}/imgs/favourites_added.svg`
+              : `${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+            alt='favourites'
           />
         </button>
       </div>

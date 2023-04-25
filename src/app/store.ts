@@ -1,11 +1,15 @@
 import { configureStore, type ThunkAction, type Action } from '@reduxjs/toolkit';
 import PhonesSlice from '../features/PhonesSlice';
 import SelectedPhoneSlice from '../features/SelectedPhoneSlice';
+import CartSlice from '../features/CartSlice';
+import FavouritesSlice from '../features/FavouritesSlice';
 
 export const store = configureStore({
   reducer: {
     allPhones: PhonesSlice,
     selectedPhone: SelectedPhoneSlice,
+    cartItems: CartSlice,
+    favouriteItems: FavouritesSlice,
   },
 });
 

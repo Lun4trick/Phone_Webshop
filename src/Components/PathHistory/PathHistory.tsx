@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import normalizePath from '../../utils/helpers/normalizePath';
 
 const PathHistory: React.FC = () => {
   const location = useLocation().pathname;
   const splitedPath = location.split('/').slice(1);
-  const currentProduct = splitedPath.pop()?.replace(/-/g, ' ');
+  const currentPath = splitedPath.pop()?.replace(/-/g, ' ');
+  const normalizedPath = normalizePath(currentPath ?? '');
 
   return (
     <div className='flex gap-[15px] mb-6'>
@@ -39,8 +41,8 @@ const PathHistory: React.FC = () => {
       <p className='text-Icons'>
         {'>'}
       </p>
-      <p className='capitalize text-Secondary line-clamp-1'>
-        {currentProduct}
+      <p className='text-Secondary line-clamp-1'>
+        {normalizedPath}
       </p>
     </div>
   );

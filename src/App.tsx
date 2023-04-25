@@ -10,6 +10,8 @@ import { loadPhones } from './features/PhonesSlice';
 import { useAppDispatch } from './app/hooks';
 import ProductPage from './Components/ProductPage/ProductsPage';
 import SelectedProduct from './Components/SelectedProduct/SelectedProduct';
+import FavouritesPage from './Components/FavouritesPage/FavouritesPage';
+import CartPage from './Components/CartPage/CartPage';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,6 +72,20 @@ const App: React.FC = () => {
             path='/'
             element={
               <HomePage />
+            }
+          />
+
+          <Route
+            path='/favourites'
+            element={
+              <FavouritesPage />
+            }
+          />
+
+          <Route
+            path='/shoppingCart'
+            element={
+              <CartPage />
             }
           />
 

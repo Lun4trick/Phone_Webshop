@@ -8,6 +8,8 @@ import cn from 'classnames';
 import PathHistory from '../PathHistory/PathHistory';
 import Loader from '../Loader/Loader';
 import ProductScroll from '../ProductScroll/ProductScroll';
+import { addCartItem, removeFromCart } from '../../features/CartSlice';
+import { removeFromFavourites, addFavouriteItem } from '../../features/FavouritesSlice';
 
 const SelectedProduct: React.FC = () => {
   const { id } = useParams();
@@ -53,6 +55,26 @@ const SelectedProduct: React.FC = () => {
       ((fullPrice - priceDiscount <= 200 && fullPrice - priceDiscount >= -200))
       && (name !== maybeInterestedName)
     ));
+  const currentCart = useAppSelector(state => state.cartItems).cartItems;
+  const isItemInCart = currentCart.includes(id ?? '');
+  const currenFavourites = useAppSelector(state => state.favouriteItems).favouriteItems;
+  const isItemInFavourites = currenFavourites.includes(id ?? '');
+
+  const addToCartHandler = () => {
+    if (isItemInCart) {
+      dispatch(removeFromCart(id ?? ''));
+    } else {
+      dispatch(addCartItem(id ?? ''));
+    }
+  };
+
+  const addToFavouritesHandler = () => {
+    if (isItemInFavourites) {
+      dispatch(removeFromFavourites(id ?? ''));
+    } else {
+      dispatch(addFavouriteItem(id ?? ''));
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -86,26 +108,36 @@ const SelectedProduct: React.FC = () => {
           <div>
             <section className='flex flex-col tablet:flex-row gap-[25px] laptop:gap-[64px] tablet:items-start'>
               <div className='flex bg-white order-1 tablet:order-2 rounded-xl items-center justify-center mx-auto tablet:mx-0 w-fit tablet:w-full max-w-[442px]'>
-                <img
-                  className='w-[275px] tablet:w-full aspect-square object-contain tablet:max-h-full mx-auto'
-                  src={phoneImageBaseUrl + images[selectedImage]}
-                  alt='selected phone image'
-                />
+                <div
+                  className='flex items-center justify-center tablet:w-full aspect-square'
+                >
+                  <img
+                    className='max-h-full rounded-[30px] max-w-full object-contain'
+                    src={phoneImageBaseUrl + images[selectedImage]}
+                    alt='selected phone image'
+                  />
+                </div>
               </div>
               <div className='flex tablet:flex-col tablet:min-w-[50px] order-2 tablet:order-1 max-w-full gap-4 justify-center mb-[15px]'>
                 {images.map((imgPath, i) => (
-                  <img
+                  <div
+                    key={imgPath}
                     className={cn(
-                      'w-[50px] laptop:w-[75px] tablet:w- aspect-square object-contain bg-white transition-shadow rounded-lg cursor-pointer',
+                      'min-w-[50px] laptop:w-[75px] bg-white transition-shadow rounded-xl aspect-square flex justify-center items-center cursor-pointer',
                       { 'shadow-[0_0_15px] shadow-white': selectedImage === i },
                     )}
-                    onClick={() => {
-                      setSelectedImage(i);
-                    }}
-                    key={imgPath}
-                    src={phoneImageBaseUrl + imgPath}
-                    alt='PhoneImages'
-                  />
+                  >
+                    <img
+                      className={cn(
+                        'object-contain max-h-[50px] laptop:max-h-[75px] rounded-lg',
+                      )}
+                      onClick={() => {
+                        setSelectedImage(i);
+                      }}
+                      src={phoneImageBaseUrl + imgPath}
+                      alt='PhoneImages'
+                    />
+                  </div>
                 ))}
               </div>
               <div className='order-3 tablet:min-w-fit tablet:w-[25%]'>
@@ -178,16 +210,33 @@ const SelectedProduct: React.FC = () => {
                 </div>
                 <div className='flex gap-2 mb-[32px]'>
                   <button
-                    className='bg-Phone-Accent hover:bg-[#A378FF] flex-1 text-Phone-white'
                     type='button'
+                    onClick={addToCartHandler}
+                    className={cn(
+                      'p-[10px] text-[14px] flex-1 text-white transition-all duration-300',
+                      { 'bg-Phone-Accent hover:bg-[#A378FF]': !isItemInCart },
+                      { 'bg-Surface-2 hover:bg-Icons': isItemInCart },
+                    )}
                   >
-                    Add to cart
+                    {isItemInCart
+                      ? 'Added'
+                      : 'Add to cart'}
                   </button>
                   <button
-                    className='bg-Surface-2 hover:bg-Icons flex justify-center items-center w-[48px] h-[48px] text-Phone-white'
+                    onClick={addToFavouritesHandler}
+                    className={cn(
+                      'hover:bg-Icons flex justify-center items-center w-[48px] h-[48px]',
+                      { 'bg-Surface-2': !isItemInFavourites },
+                      { 'bg-transparent border-[1px] border-Elements': isItemInFavourites },
+                    )}
                     type='button'
                   >
-                    <img src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} alt='favourites' />
+                    <img
+                      src={isItemInFavourites
+                        ? `${process.env.PUBLIC_URL}/imgs/favourites_added.svg`
+                        : `${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+                      alt='favourites'
+                    />
                   </button>
                 </div>
                 <div className='mb-[56px]'>
