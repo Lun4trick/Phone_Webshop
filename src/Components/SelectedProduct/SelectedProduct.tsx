@@ -56,7 +56,7 @@ const SelectedProduct: React.FC = () => {
       && (name !== maybeInterestedName)
     ));
   const currentCart = useAppSelector(state => state.cartItems).cartItems;
-  const isItemInCart = currentCart.includes(id ?? '');
+  const isItemInCart = currentCart.some(({ name }) => name === id);
   const currenFavourites = useAppSelector(state => state.favouriteItems).favouriteItems;
   const isItemInFavourites = currenFavourites.includes(id ?? '');
 

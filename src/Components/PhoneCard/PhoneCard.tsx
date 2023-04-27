@@ -28,7 +28,7 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
   const currentCart = useAppSelector(state => state.cartItems).cartItems;
   const currenFavourites = useAppSelector(state => state.favouriteItems).favouriteItems;
   const isOnSale = fullPrice - price > 90;
-  const isItemInCart = currentCart.includes(itemId);
+  const isItemInCart = currentCart.some(({ name }) => name === itemId);
   const isItemInFavourites = currenFavourites.includes(itemId);
 
   const addToCartHandler = () => {

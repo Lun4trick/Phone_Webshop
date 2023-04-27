@@ -3,6 +3,7 @@ import PhonesSlice from '../features/PhonesSlice';
 import SelectedPhoneSlice from '../features/SelectedPhoneSlice';
 import CartSlice from '../features/CartSlice';
 import FavouritesSlice from '../features/FavouritesSlice';
+import TotalCostSlice from '../features/TotalCostSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     selectedPhone: SelectedPhoneSlice,
     cartItems: CartSlice,
     favouriteItems: FavouritesSlice,
+    totalCost: TotalCostSlice,
   },
 });
 
