@@ -14,15 +14,12 @@ export const TotalCostSlice = createSlice({
   name: 'totalCost',
   initialState,
   reducers: {
-    addAmount(state, action: PayloadAction<number>) {
-      state.totalCost += action.payload;
-    },
-    reduceAmount(state, action: PayloadAction<number>) {
-      state.totalCost -= action.payload;
+    setAmount(state, action: PayloadAction<number>) {
+      state.totalCost = action.payload;
     },
   },
 });
 
 export const totalCost = (state: RootState) => state.totalCost;
-export const { addAmount, reduceAmount } = TotalCostSlice.actions;
+export const { setAmount } = TotalCostSlice.actions;
 export default TotalCostSlice.reducer;

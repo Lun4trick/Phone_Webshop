@@ -12,11 +12,31 @@ import ProductPage from './Components/ProductPage/ProductsPage';
 import SelectedProduct from './Components/SelectedProduct/SelectedProduct';
 import FavouritesPage from './Components/FavouritesPage/FavouritesPage';
 import CartPage from './Components/CartPage/CartPage';
+import CartItemType from './utils/types/CartItemType';
+import { setAllFromStorage } from './features/CartSlice';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useAppDispatch();
   const location = useLocation().pathname;
+  const storedCart: CartItemType[] = JSON.parse(window.localStorage.getItem('cart') ?? '');
+
+  function waitForLocalStorage(key: string, callback: () => void) {
+    const intervalId = setInterval(() => {
+      if (localStorage.getItem(key) !== null) {
+        clearInterval(intervalId);
+        callback();
+      }
+    }, 100);
+  }
+
+  useEffect(() => {
+    if (storedCart.length) {
+      waitForLocalStorage('cart', () => {
+        dispatch(setAllFromStorage(storedCart));
+      });
+    }
+  }, []);
 
   const onMenuAction = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
