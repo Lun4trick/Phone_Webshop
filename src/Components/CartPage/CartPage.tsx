@@ -1,13 +1,11 @@
-/* eslint-disable no-debugger */
-
 import React, { useEffect } from 'react';
 import PathHistory from '../PathHistory/PathHistory';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Loader from '../Loader/Loader';
-import { v4 as uuidv4 } from 'uuid';
-import { setAmount } from '../../features/TotalCostSlice';
-import CheckOut from '../CheckOut/CheckOut';
 import CartItem from '../CartItem/CartItem';
+import { v4 as uuidv4 } from 'uuid';
+import { addAmount } from '../../features/TotalCostSlice';
+import CheckOut from '../CheckOut/CheckOut';
 
 const CartPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -18,19 +16,12 @@ const CartPage: React.FC = () => {
   const isLoaded = status !== 'loading';
 
   useEffect(() => {
-    window.localStorage.setItem('cart', JSON.stringify(cartItems));
-
-    if (cartItems) {
-      const currentTotal = currentItems.map(({ itemId, fullPrice }) => {
-        const itemCount = cartItems.find(({ name }) => name === itemId)?.count ?? 0;
-
-        return fullPrice * itemCount;
-      })
-        .reduce((a, b) => a + b, 0);
-
-      dispatch(setAmount(currentTotal));
+    if (currentItems) {
+      currentItems.forEach(item => {
+        dispatch(addAmount(item.price));
+      });
     }
-  }, [currentItems]);
+  }, []);
 
   return (
     <section>
@@ -67,4 +58,4 @@ const CartPage: React.FC = () => {
   );
 };
 
-export default CartPage;
+export default React.memo(CartPage);
