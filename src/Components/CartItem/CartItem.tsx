@@ -2,8 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { PhonePreview } from '../../utils/types/PhonePreviewType';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addCartItem, removeFromCart } from '../../features/CartSlice';
-import { addAmount, reduceAmount } from '../../features/TotalCostSlice';
+import { addCartItem, removeAllFromCart, removeFromCart } from '../../features/CartSlice';
 
 type Props = {
   item: PhonePreview;
@@ -18,7 +17,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
     itemId,
     image,
     name,
-    price,
+    fullPrice,
   } = item;
 
   return (
@@ -29,7 +28,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <button
           type='button'
           onClick={() => {
-            dispatch(removeFromCart(itemId));
+            dispatch(removeAllFromCart(itemId));
           }}
         >
           <img
@@ -52,9 +51,9 @@ const CartItem: React.FC<Props> = ({ item }) => {
           className='flex gap-[14px]'
         >
           <button
+            type='button'
             onClick={() => {
               dispatch(removeFromCart(item.itemId));
-              dispatch(reduceAmount(price));
             }}
             disabled={countOfItem === 1}
             className={cn(
@@ -69,9 +68,9 @@ const CartItem: React.FC<Props> = ({ item }) => {
             {countOfItem}
           </p>
           <button
+            type='button'
             onClick={() => {
               dispatch(addCartItem(item.itemId));
-              dispatch(addAmount(price));
             }}
             className='text-Phone-white w-8 h-8 bg-Surface-2 hover:bg-Icons'
           >
@@ -79,7 +78,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           </button>
         </div>
         <p className='flex items-center text-Phone-white font-bold text-[22px]'>
-          {`$${price * countOfItem}`}
+          {`$${fullPrice * countOfItem}`}
         </p>
       </div>
     </section>

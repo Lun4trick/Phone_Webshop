@@ -1,14 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
-
-type CartItem = {
-  name: string;
-  count: number;
-};
+import CartItemType from '../utils/types/CartItemType';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export interface CartState {
-  cartItems: CartItem[];
+  cartItems: CartItemType[];
 }
 
 const initialState: CartState = {
@@ -19,6 +15,14 @@ export const Cartslice = createSlice({
   name: 'cartItem',
   initialState,
   reducers: {
+    setAllFromStorage(state, action: PayloadAction<CartItemType[]>) {
+      state.cartItems = action.payload;
+    },
+
+    removeAllFromCart(state, action: PayloadAction<string>) {
+      state.cartItems = state.cartItems.filter(({ name }) => name !== action.payload);
+    },
+
     addCartItem(state, action: PayloadAction<string>) {
       const { cartItems } = state;
 
@@ -29,6 +33,7 @@ export const Cartslice = createSlice({
         state.cartItems = [...state.cartItems, { name: action.payload, count: 1 }];
       }
     },
+
     removeFromCart(state, action: PayloadAction<string>) {
       const { cartItems } = state;
 
@@ -43,5 +48,5 @@ export const Cartslice = createSlice({
 });
 
 export const cartItems = (state: RootState) => state.cartItems;
-export const { addCartItem, removeFromCart } = Cartslice.actions;
+export const { addCartItem, removeFromCart, setAllFromStorage, removeAllFromCart } = Cartslice.actions;
 export default Cartslice.reducer;
