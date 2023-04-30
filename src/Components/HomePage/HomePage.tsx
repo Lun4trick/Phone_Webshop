@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { AdScroll } from '../AdScroll/Adscroll';
 import ShopByCategory from '../ShopByCategory/ShopByCategory';

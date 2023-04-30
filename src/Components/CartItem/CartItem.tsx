@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import cn from 'classnames';
 import { PhonePreview } from '../../utils/types/PhonePreviewType';
@@ -17,7 +18,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
     itemId,
     image,
     name,
-    fullPrice,
+    fullPrice
   } = item;
 
   return (

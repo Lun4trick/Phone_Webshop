@@ -21,7 +21,7 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
     fullPrice,
     screen,
     capacity,
-    ram,
+    ram
   } = phonePreview;
   const specs = [['Screen', screen], ['Capacity', capacity], ['RAM', ram]];
   const dispatch = useAppDispatch();
