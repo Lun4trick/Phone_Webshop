@@ -83,8 +83,6 @@ const ProductPage: React.FC = () => {
       queryParams.set('page', (splitedProducts.length).toString());
       navigate(`?${queryParams.toString()}`);
     }
-
-    console.log(splitedProducts.length);
   }, [splitedProducts]);
 
   return (
