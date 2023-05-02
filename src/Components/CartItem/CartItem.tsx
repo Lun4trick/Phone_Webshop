@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { PhonePreview } from '../../utils/types/PhonePreviewType';
+import { type PhonePreview } from '../../utils/types/PhonePreviewType';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addCartItem, removeAllFromCart, removeFromCart } from '../../features/CartSlice';
 
@@ -33,7 +33,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
         >
           <img
             className='w-[16px] h-[16px]'
-            src={`${process.env.PUBLIC_URL}/imgs/Close.svg`}
+            src={`${process.env.PUBLIC_URL!}/imgs/Close.svg`}
             alt='remove-all'
           />
         </button>

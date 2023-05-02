@@ -1,15 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ProductCategories from '../../utils/map/ProductCategories';
 import { useAppSelector } from '../../app/hooks';
 import DropDownMenu from '../DropDownMenu/DropDownMenu';
-import { SortByTypes, SortMenuType } from '../../utils/types/SortByMenuTypes';
+import { type PaginationOptions, SortByTypes, type SortMenuType } from '../../utils/types/SortByMenuTypes';
 import PhoneCard from '../PhoneCard/PhoneCard';
 import usePagination from '../../utils/customHooks/usePagination';
 import NumberOfPages from '../NumberOfPages/NumberOfPages';
-import ProductType from '../../utils/types/ProductType';
+import type ProductType from '../../utils/types/ProductType';
 import PageChangeType from '../../utils/types/PageChangeType';
 import PathHistory from '../PathHistory/PathHistory';
 import getSortedProducts from '../../utils/helpers/getSortedProducts';
@@ -24,13 +23,17 @@ const ProductPage: React.FC = () => {
   const queryParams = new URLSearchParams(search);
   const urlPage = Number(queryParams.get('page'));
   const urlSort = queryParams.get('sort') ?? SortByTypes.NEWEST;
+  const urlElementsPerPage = queryParams.get('elements') ?? '16';
   const [{
     sort,
     pagination,
-  }, setItemSort] = useState<SortMenuType>({ sort: (urlSort as SortByTypes), pagination: '16' });
+  }, setItemSort] = useState<SortMenuType>({
+    sort: (urlSort as SortByTypes),
+    pagination: urlElementsPerPage as PaginationOptions,
+  });
   const navigate = useNavigate();
 
-  const onPageChange = useCallback((pageChangeType: PageChangeType, exactPage: number = 1) => {
+  const onPageChange = useCallback((pageChangeType: PageChangeType, exactPage = 1) => {
     const { LEFT, RIGHT } = PageChangeType;
     switch (pageChangeType) {
       case LEFT:
@@ -42,7 +45,7 @@ const ProductPage: React.FC = () => {
         break;
 
       default:
-        queryParams.set('page', (exactPage + 1).toString());;
+        queryParams.set('page', (exactPage + 1).toString());
     }
 
     navigate(`?${queryParams.toString()}`);
@@ -57,6 +60,7 @@ const ProductPage: React.FC = () => {
     if (!urlPage) {
       queryParams.set('page', '1');
     }
+
     queryParams.set('sort', sort);
 
     const newSearchString = queryParams.toString();
@@ -80,7 +84,7 @@ const ProductPage: React.FC = () => {
       navigate(`?${queryParams.toString()}`);
     }
 
-    console.log(splitedProducts.length)
+    console.log(splitedProducts.length);
   }, [splitedProducts]);
 
   return (

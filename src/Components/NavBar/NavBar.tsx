@@ -48,7 +48,7 @@ const NavBar: React.FC = () => {
                 </p>
               </div>
             )}
-            <img src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`} alt='favourites' />
+            <img src={`${process.env.PUBLIC_URL!}/imgs/favourites_icon.svg`} alt='favourites' />
           </div>
         </NavLink>
 
@@ -66,7 +66,7 @@ const NavBar: React.FC = () => {
                 </p>
               </div>
             )}
-            <img src={`${process.env.PUBLIC_URL}/imgs/shopping_cart.svg`} alt='shoppingCart' />
+            <img src={`${process.env.PUBLIC_URL!}/imgs/shopping_cart.svg`} alt='shoppingCart' />
           </div>
         </NavLink>
       </div>

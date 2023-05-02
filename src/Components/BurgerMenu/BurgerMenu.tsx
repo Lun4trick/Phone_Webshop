@@ -7,9 +7,9 @@ type Props = {
 };
 
 export const BurgerMenu: React.FC<Props> = ({ isMenuOpen }) => {
-  const headerHeight = document.getElementById('header')?.offsetHeight;
+  const headerHeight = document.getElementById('header')?.offsetHeight ?? 0;
   const viewPortHeight = window.innerHeight;
-  const menuHeight = (viewPortHeight - (headerHeight ?? 0));
+  const menuHeight = (viewPortHeight - (headerHeight));
 
   return (
     <div
@@ -41,13 +41,13 @@ export const BurgerMenu: React.FC<Props> = ({ isMenuOpen }) => {
         <button type='button' className='w-1/2 p-4 h-full laptop:p-5 items-center border-Surface-2 hover:bg-slate-600 active:bg-slate-500 active:border-b-4 active:border-b-white'>
           <img
             className='mx-auto'
-            src={`${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+            src={`${process.env.PUBLIC_URL!}/imgs/favourites_icon.svg`}
             alt=''
           />
         </button>
         <button type='button' className='w-1/2 p-4 h-full justify-center laptop:p-5  border-l border-Surface-2 items-center hover:bg-slate-600 active:bg-slate-500 active:border-b-4 active:border-b-white'>
           <img
-            src={`${process.env.PUBLIC_URL}/imgs/shopping_cart.svg`}
+            src={`${process.env.PUBLIC_URL!}/imgs/shopping_cart.svg`}
             className='mx-auto'
             alt=''
           />

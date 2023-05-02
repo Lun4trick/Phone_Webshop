@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
-import { PhonePreview } from '../../utils/types/PhonePreviewType';
+import { type PhonePreview } from '../../utils/types/PhonePreviewType';
 import PageChangeType from '../../utils/types/PageChangeType';
 
 type Props = {
@@ -29,7 +29,7 @@ const NumberOfPages: React.FC<Props> = ({ pages, onPageChange, currentPage }) =>
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`}
+          src={`${process.env.PUBLIC_URL!}/imgs/arrow-left.svg`}
           alt='arrow-left'
         />
       </button>
@@ -67,7 +67,7 @@ const NumberOfPages: React.FC<Props> = ({ pages, onPageChange, currentPage }) =>
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`}
+          src={`${process.env.PUBLIC_URL!}/imgs/arrow-right.svg`}
           alt='arrow-left'
         />
       </button>

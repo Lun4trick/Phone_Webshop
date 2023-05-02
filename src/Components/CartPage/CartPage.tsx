@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import React, { useEffect } from 'react';
 import PathHistory from '../PathHistory/PathHistory';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';

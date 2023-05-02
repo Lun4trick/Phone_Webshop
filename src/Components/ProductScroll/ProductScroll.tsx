@@ -69,26 +69,26 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
           <button
             type='button'
             className={cn(
-              'bg-gray-600 h-[32px] aspect-square flex items-center justify-center',
-              { 'bg-transparent border-[1px] border-gray-700': currentScrollPos === START },
+              'bg-Surface-2 h-[32px] hover:bg-Icons aspect-square flex items-center justify-center',
+              { 'bg-transparent border-[1px] hover:bg-transparent border-Elements': currentScrollPos === START },
             )}
             onClick={scrollLeft}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`}
+              src={'imgs/arrow-left.svg'}
               alt=''
             />
           </button>
           <button
             type='button'
             className={cn(
-              'bg-gray-600 h-[32px] aspect-square flex items-center justify-center',
-              { 'bg-transparent border-[1px] border-gray-700': currentScrollPos === END },
+              'bg-Surface-2 h-[32px] hover:bg-Icons aspect-square flex items-center justify-center',
+              { 'bg-transparent border-[1px] hover:bg-transparent border-Elements': currentScrollPos === END },
             )}
             onClick={scrollRight}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`}
+              src={`${process.env.PUBLIC_URL!}/imgs/arrow-right.svg`}
               alt=''
             />
           </button>

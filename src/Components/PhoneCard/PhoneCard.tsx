@@ -117,8 +117,8 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
         >
           <img
             src={isItemInFavourites
-              ? `${process.env.PUBLIC_URL}/imgs/favourites_added.svg`
-              : `${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+              ? `${process.env.PUBLIC_URL!}/imgs/favourites_added.svg`
+              : `${process.env.PUBLIC_URL!}/imgs/favourites_icon.svg`}
             alt='favourites'
           />
         </button>

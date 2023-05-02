@@ -1,4 +1,4 @@
-import { PhonePreview } from '../types/PhonePreviewType';
+import { type PhonePreview } from '../types/PhonePreviewType';
 import { SortByTypes } from '../types/SortByMenuTypes';
 
 function getSortedProducts(sortType: SortByTypes, products: PhonePreview[]) {

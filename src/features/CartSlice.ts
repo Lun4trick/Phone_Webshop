@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
-import CartItemType from '../utils/types/CartItemType';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type RootState } from '../app/store';
+import type CartItemType from '../utils/types/CartItemType';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export interface CartState {

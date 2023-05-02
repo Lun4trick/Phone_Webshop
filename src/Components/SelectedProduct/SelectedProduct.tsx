@@ -38,8 +38,8 @@ const SelectedProduct: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-nullish-coalescing
   } = selectedProduct! ?? {};
   const simplifiedPhoneName = id?.split('-').slice(0, -2).join('-');
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
-  const [selectedCapacity, setSelectedCapacity] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | undefined>();
+  const [selectedCapacity, setSelectedCapacity] = useState<string | undefined>();
   const isLoaded = selectedColor && selectedCapacity && selectedProduct;
   const isOnSale = priceRegular - priceDiscount > 90;
   const specs = [['Screen', screen], ['Resolution', resolution], ['RAM', ram], ['Processor', processor]];
@@ -161,7 +161,7 @@ const SelectedProduct: React.FC = () => {
                             onClick={() => {
                               setSelectedColor(currentColor);
                             }}
-                            to={`/phones/${simplifiedPhoneName}-${selectedCapacity.toLowerCase()}-${currentColor}`}
+                            to={`/phones/${simplifiedPhoneName!}-${selectedCapacity.toLowerCase()}-${currentColor}`}
                             className={`w-[30px] h-[30px] rounded-full bg-pc-${currentColor}`}/>
                         </div>
                       ))
@@ -189,7 +189,7 @@ const SelectedProduct: React.FC = () => {
                             onClick={() => {
                               setSelectedCapacity(currentCapacity);
                             }}
-                            to={`/phones/${simplifiedPhoneName}-${currentCapacity.toLowerCase()}-${selectedColor}`}
+                            to={`/phones/${simplifiedPhoneName!}-${currentCapacity.toLowerCase()}-${selectedColor}`}
                           >
                             {currentCapacity.slice(0, -2) + ' GB'}
                           </NavLink>
@@ -233,8 +233,8 @@ const SelectedProduct: React.FC = () => {
                   >
                     <img
                       src={isItemInFavourites
-                        ? `${process.env.PUBLIC_URL}/imgs/favourites_added.svg`
-                        : `${process.env.PUBLIC_URL}/imgs/favourites_icon.svg`}
+                        ? `${process.env.PUBLIC_URL!}/imgs/favourites_added.svg`
+                        : `${process.env.PUBLIC_URL!}/imgs/favourites_icon.svg`}
                       alt='favourites'
                     />
                   </button>

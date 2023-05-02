@@ -100,7 +100,7 @@ const DropDownMenu: React.FC<Props> = ({ onItemsSortChange }) => {
                 ' transition-all',
                 { 'rotate-180': isSortOpen },
               )}
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-down.svg`}
+              src={`${process.env.PUBLIC_URL!}/imgs/arrow-down.svg`}
               alt='arrow-left'
             />
           </button>
@@ -151,7 +151,7 @@ const DropDownMenu: React.FC<Props> = ({ onItemsSortChange }) => {
                 ' transition-all',
                 { 'rotate-180': isPagOpen },
               )}
-              src={`${process.env.PUBLIC_URL}/imgs/arrow-down.svg`}
+              src={`${process.env.PUBLIC_URL!}/imgs/arrow-down.svg`}
               alt='arrow-left'
             />
           </button>

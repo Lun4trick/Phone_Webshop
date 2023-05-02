@@ -12,7 +12,7 @@ import ProductPage from './Components/ProductPage/ProductsPage';
 import SelectedProduct from './Components/SelectedProduct/SelectedProduct';
 import FavouritesPage from './Components/FavouritesPage/FavouritesPage';
 import CartPage from './Components/CartPage/CartPage';
-import CartItemType from './utils/types/CartItemType';
+import type CartItemType from './utils/types/CartItemType';
 import { setAllFromStorage } from './features/CartSlice';
 
 const App: React.FC = () => {
@@ -20,7 +20,9 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation().pathname;
   const storedCartJSON = window.localStorage.getItem('cart');
-  const storedCart: CartItemType[] = storedCartJSON ? JSON.parse(storedCartJSON) : [];
+  const storedCart: CartItemType[] = storedCartJSON
+    ? (JSON.parse(storedCartJSON) as CartItemType[])
+    : [];
 
   function waitForLocalStorage(key: string, callback: () => void) {
     const intervalId = setInterval(() => {

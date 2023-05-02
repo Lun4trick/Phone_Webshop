@@ -14,7 +14,7 @@ export const Header: React.FC<Props> = ({ isMenuOpen, onMenuAction }) => (
       className='p-4 laptop:px-6 laptop:pr-8'>
       <img
         className='h-5 w-16 laptop:h-7 laptop:w-20'
-        src={`${process.env.PUBLIC_URL}/imgs/logo.svg`}
+        src={`${process.env.PUBLIC_URL!}/imgs/logo.svg`}
         alt='Logo'
       />
     </NavLink>
@@ -34,8 +34,8 @@ export const Header: React.FC<Props> = ({ isMenuOpen, onMenuAction }) => (
         }
         src={
           isMenuOpen
-            ? `${process.env.PUBLIC_URL}/imgs/mobile_close_menu.svg`
-            : `${process.env.PUBLIC_URL}/imgs/mobile_open_menu.svg`}
+            ? `${process.env.PUBLIC_URL!}/imgs/mobile_close_menu.svg`
+            : `${process.env.PUBLIC_URL!}/imgs/mobile_open_menu.svg`}
         alt=''
       />
     </button>

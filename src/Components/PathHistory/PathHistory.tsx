@@ -16,7 +16,7 @@ const PathHistory: React.FC = () => {
       >
         <img
           className='aspect-square w-4 fill-Phone-white'
-          src={`${process.env.PUBLIC_URL}/imgs/Home-ico.svg`}
+          src={`${process.env.PUBLIC_URL!}/imgs/Home-ico.svg`}
           alt='Home'
         />
       </NavLink>

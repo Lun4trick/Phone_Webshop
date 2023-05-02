@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -31,9 +32,9 @@ export const PhonesSlice = createSlice({
       .addCase(loadPhones.pending, state => {
         state.status = 'loading';
       })
-      .addCase(loadPhones.fulfilled, (state, action) => {
+      .addCase(loadPhones.fulfilled, (state, { payload }) => {
         state.status = 'idle';
-        state.phones = action.payload;
+        state.phones = payload as PhonePreview[];
       })
       .addCase(loadPhones.rejected, state => {
         state.status = 'failed';

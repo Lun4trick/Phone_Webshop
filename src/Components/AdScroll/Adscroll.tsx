@@ -84,7 +84,7 @@ export const AdScroll: React.FC = () => {
             arrowButtonHandler(Direction.LEFT);
           }}
         >
-          <img src={`${process.env.PUBLIC_URL}/imgs/arrow-left.svg`} alt='arrow-left' />
+          <img src={`${process.env.PUBLIC_URL!}/imgs/arrow-left.svg`} alt='arrow-left' />
         </button>
 
         <div className='flex w-full tablet:aspect-[5/2] tablet:max-h-[400px] aspect-square bg-black'>
@@ -118,7 +118,7 @@ export const AdScroll: React.FC = () => {
             arrowButtonHandler(Direction.RIGHT);
           }}
         >
-          <img src={`${process.env.PUBLIC_URL}/imgs/arrow-right.svg`} alt='arrow-right' />
+          <img src={`${process.env.PUBLIC_URL!}/imgs/arrow-right.svg`} alt='arrow-right' />
         </button>
       </div>
       <div className='flex h-5 w-full gap-4 justify-center'>
