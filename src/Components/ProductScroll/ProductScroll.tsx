@@ -75,7 +75,7 @@ const ProductScroll: React.FC<Props> = ({ products, title }) => {
             onClick={scrollLeft}
           >
             <img
-              src={'imgs/arrow-left.svg'}
+              src={`${process.env.PUBLIC_URL!}/imgs/arrow-left.svg`}
               alt=''
             />
           </button>
