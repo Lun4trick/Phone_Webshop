@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
 import { type PaginationOptions, SortByTypes, type SortMenuType } from '../../utils/types/SortByMenuTypes';
 import ItemsPerPage from '../../utils/map/ItemsPerPage';
+import { useLocation } from 'react-router-dom';
 
 type MenuType = 'sortMenu' | 'pagMenu';
 
@@ -10,8 +11,10 @@ type Props = {
 };
 
 const DropDownMenu: React.FC<Props> = ({ onItemsSortChange }) => {
+  const queryParams = new URLSearchParams(useLocation().search);
   const { NEWEST } = SortByTypes;
-  const [currentSort, setCurrentSort] = useState<SortByTypes>(NEWEST);
+  const urlSort = queryParams.get('sort') ?? NEWEST;
+  const [currentSort, setCurrentSort] = useState<SortByTypes>(urlSort as SortByTypes);
   const [maxItems, setMaxItems] = useState<PaginationOptions>('16');
   const [{ isSortOpen, isPagOpen }, setMenusOpen] = useState({ isSortOpen: false, isPagOpen: false });
   const sortTypes = Object.values(SortByTypes);

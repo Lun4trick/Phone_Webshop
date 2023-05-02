@@ -22,6 +22,7 @@ const NumberOfPages: React.FC<Props> = ({ pages, onPageChange, currentPage }) =>
           { ' border-[1px] border-Elements': currentPage === 0 },
         )}
         onClick={() => {
+          console.log(pages);
           if (currentPage > 0) {
             onPageChange(LEFT);
           }
@@ -34,7 +35,7 @@ const NumberOfPages: React.FC<Props> = ({ pages, onPageChange, currentPage }) =>
       </button>
       <div className='flex gap-2'>
         {
-          pages.map((page, i) => (
+          pages.map((p, i) => (
             <button
               key={uuidv4()}
               type='button'

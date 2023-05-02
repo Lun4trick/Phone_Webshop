@@ -19,7 +19,8 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useAppDispatch();
   const location = useLocation().pathname;
-  const storedCart: CartItemType[] = JSON.parse(window.localStorage.getItem('cart') ?? '');
+  const storedCartJSON = window.localStorage.getItem('cart');
+  const storedCart: CartItemType[] = storedCartJSON ? JSON.parse(storedCartJSON) : [];
 
   function waitForLocalStorage(key: string, callback: () => void) {
     const intervalId = setInterval(() => {

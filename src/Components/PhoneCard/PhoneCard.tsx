@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { type PhonePreview } from '../../utils/types/PhonePreviewType';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { addCartItem, removeFromCart } from '../../features/CartSlice';
+import { addCartItem, removeAllFromCart } from '../../features/CartSlice';
 import { addFavouriteItem, removeFromFavourites } from '../../features/FavouritesSlice';
 
 type Props = {
@@ -21,19 +21,19 @@ const PhoneCard: React.FC<Props> = ({ phonePreview }) => {
     fullPrice,
     screen,
     capacity,
-    ram
+    ram,
   } = phonePreview;
   const specs = [['Screen', screen], ['Capacity', capacity], ['RAM', ram]];
   const dispatch = useAppDispatch();
-  const currentCart = useAppSelector(state => state.cartItems).cartItems;
-  const currenFavourites = useAppSelector(state => state.favouriteItems).favouriteItems;
+  const { cartItems } = useAppSelector(state => state.cartItems);
+  const { favouriteItems } = useAppSelector(state => state.favouriteItems);
   const isOnSale = fullPrice - price > 90;
-  const isItemInCart = currentCart.some(({ name }) => name === itemId);
-  const isItemInFavourites = currenFavourites.includes(itemId);
+  const isItemInCart = cartItems.some(({ name }) => name === itemId);
+  const isItemInFavourites = favouriteItems.includes(itemId);
 
   const addToCartHandler = () => {
     if (isItemInCart) {
-      dispatch(removeFromCart(itemId));
+      dispatch(removeAllFromCart(itemId));
     } else {
       dispatch(addCartItem(itemId));
     }

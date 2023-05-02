@@ -8,7 +8,7 @@ import cn from 'classnames';
 import PathHistory from '../PathHistory/PathHistory';
 import Loader from '../Loader/Loader';
 import ProductScroll from '../ProductScroll/ProductScroll';
-import { addCartItem, removeFromCart } from '../../features/CartSlice';
+import { addCartItem, removeAllFromCart, removeFromCart } from '../../features/CartSlice';
 import { removeFromFavourites, addFavouriteItem } from '../../features/FavouritesSlice';
 
 const SelectedProduct: React.FC = () => {
@@ -62,7 +62,7 @@ const SelectedProduct: React.FC = () => {
 
   const addToCartHandler = () => {
     if (isItemInCart) {
-      dispatch(removeFromCart(id ?? ''));
+      dispatch(removeAllFromCart(id ?? ''));
     } else {
       dispatch(addCartItem(id ?? ''));
     }

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import cn from 'classnames';
 import { PhonePreview } from '../../utils/types/PhonePreviewType';
@@ -18,7 +17,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
     itemId,
     image,
     name,
-    fullPrice
+    fullPrice,
   } = item;
 
   return (
@@ -34,7 +33,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
         >
           <img
             className='w-[16px] h-[16px]'
-            src={`${process.env.PUBLIC_URL}/imgs/close.svg`}
+            src={`${process.env.PUBLIC_URL}/imgs/Close.svg`}
             alt='remove-all'
           />
         </button>
@@ -52,7 +51,6 @@ const CartItem: React.FC<Props> = ({ item }) => {
           className='flex gap-[14px]'
         >
           <button
-            type='button'
             onClick={() => {
               dispatch(removeFromCart(item.itemId));
             }}
@@ -69,7 +67,6 @@ const CartItem: React.FC<Props> = ({ item }) => {
             {countOfItem}
           </p>
           <button
-            type='button'
             onClick={() => {
               dispatch(addCartItem(item.itemId));
             }}
